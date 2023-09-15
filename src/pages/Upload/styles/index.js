@@ -321,4 +321,55 @@ export const UploadWrapper = styled.div`
     background-color: #fbfbfb;
     padding-bottom: 20px;
   }
+  .main_view {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .kuiz_position_boxes {
+    width: 180px;
+    height: 200px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: #f8f9fe;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+    margin-bottom: 25px;
+  }
+
+  .upload_mid_section {
+    display: flex;
+  }
+
+  .fileSelect {
+    color: #000;
+    cursor: pointer;
+    font-family: Noto Sans KR;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    display: flex;
+    width: 50vh;
+    height: 36px;
+    padding: 8px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    border: 1px solid #312e81;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+    margin-left: 53px;
+    margin-right: 60px;
+  }
+
+  .fileUpload {
+    margin-right: 30px;
+    margin-left: auto;
+    cursor: pointer;
+  }
+
+  .fileUploadCancel {
+    margin-right: 30px;
+    cursor: pointer;
+  }
 `;

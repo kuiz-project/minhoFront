@@ -1,67 +1,72 @@
 import React, { useState } from "react";
-import { GenerateView } from "./generatequestions";
-import { UploadView } from "./upload";
-import { MyTest } from "./mytest";
-import "../cssfiles/main.css";
-import "../cssfiles/mytest.css";
-import { ReactComponent as Logo } from "../images/logo.svg";
-import { ReactComponent as User } from "../images/Ellipse 2.svg";
-import { ReactComponent as Logout } from "../images/logoutbutton.svg";
+import logo from "../../assets/images/logo.svg";
+import user from "../../assets/images/Ellipse 2.svg";
+import login from "../../assets/images/loginbutton.svg";
+import * as S from "./styles/index";
 
-const MainPage = () => {
-  const [activenav, setActivenav] = useState(0);
-  const handleClick = (index) => {
-    setActivenav(index);
+const Navbar = () => {
+  // 로그인 상태
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  // Nav바 상태
+  const [navItem, setNavItem] = useState([
+    {
+      name: "문제 생성",
+      isSelected: true,
+    },
+    {
+      name: "나의 시험지",
+      isSelected: false,
+    },
+    {
+      name: "결제정보",
+      isSelected: false,
+    },
+  ]);
+
+  const handleNavItem = (index) => {
+    console.log(index);
+    const newNavItem = [...navItem];
+    newNavItem.map((item, idx) => {
+      if (index === idx) {
+        item.isSelected = true;
+      } else {
+        item.isSelected = false;
+      }
+      return item;
+    });
+    setNavItem(newNavItem);
   };
-  const renderView = () => {
-    if (activenav === 0) {
-      return <GenerateView />;
-    }
-    if (activenav === 1) {
-      return <UploadView />;
-    }
-    if (activenav === 2) {
-      return <MyTest />;
-    }
-    // 다른 뷰에 대한 조건도 추가 가능
-    return null;
-  };
+  console.log(navItem);
 
   return (
-    <div className="mainPage">
-      <div className="header">
-        <Logo className="logo" />
-        <div
-          className={`nav-detail ${activenav === 0 ? "active" : ""}`}
-          onClick={() => handleClick(0)}
-        >
-          문제 생성
+    <S.NavbarWrapper>
+      <section className="navBarLeftBox">
+        <img src={logo} alt="로고 이미지" className="navLogo" />
+        <div className="navBtnWrapper">
+          {navItem.map((item, idx) => {
+            return (
+              <S.NavBarItem
+                onClick={() => handleNavItem(idx)}
+                isSelected={item.isSelected}
+              >
+                {item.name}
+              </S.NavBarItem>
+            );
+          })}
         </div>
-        <div
-          className={`nav-detail ${activenav === 1 ? "active" : ""}`}
-          onClick={() => handleClick(1)}
-        >
-          PDF 업로드
-        </div>
-        <div
-          className={`nav-detail ${activenav === 2 ? "active" : ""}`}
-          onClick={() => handleClick(2)}
-        >
-          나의 시험지
-        </div>
-        <div
-          className={`nav-detail ${activenav === 3 ? "active" : ""}`}
-          onClick={() => handleClick(3)}
-        >
-          결제 정보
-        </div>
-        <div></div>
-        <Logout className="logout" />
-        <User className="userLogo" />
-      </div>
-      {renderView()}
-    </div>
+      </section>
+      <section className="navBarRightBox">
+        {isLoggedIn ? (
+          <img src={user} className="userProfile" alt="유저 로고 이미지" />
+        ) : (
+          <button src={login} className="loginBtn">
+            로그인
+          </button>
+        )}
+      </section>
+    </S.NavbarWrapper>
   );
 };
 
-export default MainPage;
+export default Navbar;
