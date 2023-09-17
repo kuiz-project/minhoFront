@@ -29,6 +29,8 @@ const GlobalStyles = createGlobalStyle`
         list-style: none;
     }
     button {
+        padding:0;
+        margin:0;
         border: 0;
           font-family: "Noto Sans KR_Regular", 'sans-serif';
         background: transparent;

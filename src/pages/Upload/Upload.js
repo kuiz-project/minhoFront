@@ -1,42 +1,47 @@
 import React, { useState } from "react";
-import uploadbtn from "../../assets/images/uploadButton.svg";
 import cancel from "../../assets/images/cancel.svg";
 import close from "../../assets/images/dir_close.svg";
 import open from "../../assets/images/dir_open.svg";
 import add from "../../assets/images/add.svg";
 import trash from "../../assets/images/trash.svg";
+import search from "../../assets/images/search.svg";
 import * as S from "./styles/index";
+import FileItem from "../../components/FileItem/FileItem";
 
 const Upload = () => {
   const initialDirectories = [
     {
-      id: "dir1",
+      id: "1",
       name: "디렉토리명",
-      isSelected: true,
+      isSelected: false,
+      isEdit: false,
       details: [
-        { id: 1, name: "PDF 파일명 1" },
-        { id: 2, name: "PDF 파일명 2" },
-        { id: 3, name: "PDF 파일명 3" },
-        { id: 4, name: "PDF 파일명 4" },
-        { id: 5, name: "PDF 파일명 5" },
+        { id: 1, name: "PDF 파일명 1", isSelected: false, isEdit: false },
+        { id: 2, name: "PDF 파일명 2", isSelected: false, isEdit: false },
+        { id: 3, name: "PDF 파일명 3", isSelected: false, isEdit: false },
+        { id: 4, name: "PDF 파일명 4", isSelected: false, isEdit: false },
+        { id: 5, name: "PDF 파일명 5", isSelected: false, isEdit: false },
       ],
     },
     {
-      id: "dir2",
+      id: "2",
       name: "디렉토리명",
-      isSelected: true,
+      isSelected: false,
+      isEdit: false,
       details: [
-        { id: 1, name: "PDF 파일명 1" },
-        { id: 2, name: "PDF 파일명 2" },
-        { id: 3, name: "PDF 파일명 3" },
-        { id: 4, name: "PDF 파일명 4" },
-        { id: 5, name: "PDF 파일명 5" },
+        { id: 1, name: "PDF 파일명 1", isSelected: false, isEdit: false },
+        { id: 2, name: "PDF 파일명 2", isSelected: false, isEdit: false },
+        { id: 3, name: "PDF 파일명 3", isSelected: false, isEdit: false },
+        { id: 4, name: "PDF 파일명 4", isSelected: false, isEdit: false },
+        { id: 5, name: "PDF 파일명 5", isSelected: false, isEdit: false },
       ],
     },
   ];
 
   // directory 배열
   const [directories, setDirectories] = useState(initialDirectories);
+  const [searchValue, setSearchValue] = useState("");
+  console.log(directories);
 
   // directory 클릭
   const handleDirectory = (dirId) => {
@@ -49,75 +54,84 @@ const Upload = () => {
     setDirectories(newDirectories);
   };
 
+  // 검색어
+  const handleSearch = (e) => {
+    setSearchValue(e.target.value);
+  };
+
   return (
     <S.UploadWrapper>
-      <section>
-        <div className="section_header">
-          <img src={trash} className="trash_button" alt="삭제 버튼" />
-          <img src={add} className="add_button" alt="추가 버튼" />
-        </div>
-        <div className="section_lists">
-          {directories.map((directory) => (
-            <div className="directory" key={directory.id}>
-              <div className="directory_top">
-                <div onClick={() => handleDirectory(directory.id)}>
+      <S.SideBarWrapper>
+        <S.SideBarHeader>
+          <S.EditBtn>편집</S.EditBtn>
+          <S.DeleteBtn>
+            <img src={trash} alt="삭제 버튼" />
+          </S.DeleteBtn>
+          <S.AddBtn>
+            <img src={add} alt="추가 버튼" />
+          </S.AddBtn>
+        </S.SideBarHeader>
+        <S.SectionListBox>
+          {directories.map((directory, idx) => (
+            <S.DirBox key={directory.id}>
+              <S.DirTitle isSelected={directories[idx].isSelected}>
+                <S.ToggleBtn onClick={() => handleDirectory(directory.id)}>
                   {directory.isSelected ? (
-                    <img
-                      src={close}
-                      className="directory_image"
-                      alt="닫기 이미지"
-                    />
+                    <img src={open} alt="열기 이미지" />
                   ) : (
-                    <img
-                      src={open}
-                      className="directory_image2"
-                      alt="열기 이미지"
-                    />
+                    <img src={close} alt="닫기 이미지" />
                   )}
-                </div>
-                <div className="directory_name">{directory.name}</div>
-              </div>
-              {!directory.isSelected && (
-                <div className="directory_details">
-                  {directory.details.map((detail) => (
-                    <div key={detail.id}>{detail.name}</div>
+                </S.ToggleBtn>
+                <S.DirName isSelected={directories[idx].isSelected}>
+                  {directory.name}
+                </S.DirName>
+              </S.DirTitle>
+              {directory.isSelected && (
+                <S.DirInner>
+                  {directory.details.map((file) => (
+                    <FileItem
+                      key={file.id}
+                      directories={directories}
+                      setDirectories={setDirectories}
+                      directory={directory}
+                      file={file}
+                    ></FileItem>
                   ))}
-                </div>
+                </S.DirInner>
               )}
-            </div>
+            </S.DirBox>
           ))}
-        </div>
-      </section>
-      <div className="upload_mid_section">
-        <div className="upload_mid_top">
-          <div className="upload_name">강의명</div>
-          <div className="upload_search">
-            <div className="upload_top_search">
-              <input className="search" type="text" placeholder="검색" />
-            </div>
-
-            <div className="search_list">
-              <div className="search_list_boxes">마지막</div>
-              <div className="search_list_boxes">과목과목</div>
-              <div className="search_list_boxes">
-                ㅁㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㄹㅇ
-              </div>
-              <div className="search_list_boxes">ㅇㅇㅇㅇㅇㅇㅇㅇ</div>
-              <div className="search_list_boxes">ㄴㄴㄴ</div>
-              <div className="search_list_boxes">ㄴㄴㄴ</div>
-              <div className="search_list_boxes">ㄴㄴㄴ</div>
-            </div>
-          </div>
-        </div>
-        <div className="upload_mid_bottom">
-          <div className="fileSelect">파일선택</div>
-          <img src={uploadbtn} className="fileUpload" alt="업로드 버튼" />
-          <img src={cancel} className="fileUploadCancel" alt="취소 버튼" />
-        </div>
-      </div>
-      <div className="upload_right_section">
-        <div className="kuiz_position_text">KUIZ 추천 포지션</div>
-      </div>
+        </S.SectionListBox>
+      </S.SideBarWrapper>
+      <S.LectureUploadWrapper>
+        <S.LectureWrapper>
+          <S.UploadName>강의명</S.UploadName>
+          <S.UploadSearch>
+            <S.UploadTopSearch>
+              <img src={search} alt="검색 이미지" />
+              <S.SearchInput
+                type="text"
+                value={searchValue}
+                onChange={handleSearch}
+                placeholder="강의명을 입력하세요"
+              />
+            </S.UploadTopSearch>
+            <S.SearchList>
+              <S.SearchItem>마지막</S.SearchItem>
+              <S.SearchItem>마지막123213</S.SearchItem>
+              <S.SearchItem>마지막</S.SearchItem>
+            </S.SearchList>
+          </S.UploadSearch>
+        </S.LectureWrapper>
+        <S.FileUploadWrapper>
+          <S.UploadBox>
+            <button>파일 선택</button>
+            <S.UploadCancelBtn>
+              <img src={cancel} alt="취소 버튼" />
+            </S.UploadCancelBtn>
+          </S.UploadBox>
+        </S.FileUploadWrapper>
+      </S.LectureUploadWrapper>
     </S.UploadWrapper>
   );
 };

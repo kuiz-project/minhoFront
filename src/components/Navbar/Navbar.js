@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../assets/images/logo.svg";
 import user from "../../assets/images/Ellipse 2.svg";
 import login from "../../assets/images/loginbutton.svg";
 import * as S from "./styles/index";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   // 로그인 상태
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
@@ -13,19 +16,21 @@ const Navbar = () => {
     {
       name: "문제 생성",
       isSelected: true,
+      url: "upload",
     },
     {
       name: "나의 시험지",
       isSelected: false,
+      url: "mytest",
     },
     {
       name: "결제정보",
       isSelected: false,
+      url: "no",
     },
   ]);
 
   const handleNavItem = (index) => {
-    console.log(index);
     const newNavItem = [...navItem];
     newNavItem.map((item, idx) => {
       if (index === idx) {
@@ -37,7 +42,16 @@ const Navbar = () => {
     });
     setNavItem(newNavItem);
   };
-  console.log(navItem);
+
+  // 페이지 이동
+  const handlePage = () => {
+    const targetPage = navItem.filter((item) => item.isSelected)[0];
+    navigate(targetPage.url);
+  };
+
+  useEffect(() => {
+    handlePage();
+  }, [navItem]);
 
   return (
     <S.NavbarWrapper>
