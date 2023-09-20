@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import cancel from "../../assets/images/cancel.svg";
 import close from "../../assets/images/dir_close.svg";
 import open from "../../assets/images/dir_open.svg";
@@ -7,8 +7,14 @@ import trash from "../../assets/images/trash.svg";
 import search from "../../assets/images/search.svg";
 import * as S from "./styles/index";
 import FileItem from "../../components/FileItem/FileItem";
+import { useRecoilState } from "recoil";
+import { currentPdfUrl, currentFile } from "./../../recoil/atom";
 
 const Upload = () => {
+  const [pdfUrl, setPdfUrl] = useRecoilState(currentPdfUrl);
+  const [fileState, setFileState] = useRecoilState(currentFile);
+
+  // directory 배열
   const initialDirectories = [
     {
       id: "1",
@@ -38,10 +44,11 @@ const Upload = () => {
     },
   ];
 
-  // directory 배열
+  const fileInputRef = useRef(null);
   const [directories, setDirectories] = useState(initialDirectories);
   const [searchValue, setSearchValue] = useState("");
-  console.log(directories);
+  const [file, setFile] = useState(null);
+  const [fileName, setFileName] = useState(""); // 파일 이름
 
   // directory 클릭
   const handleDirectory = (dirId) => {
@@ -125,8 +132,33 @@ const Upload = () => {
         </S.LectureWrapper>
         <S.FileUploadWrapper>
           <S.UploadBox>
-            <button>파일 선택</button>
-            <S.UploadCancelBtn>
+            <input
+              type="file"
+              ref={fileInputRef}
+              className="hiddenInput"
+              onChange={(e) => {
+                const file = e.target.files[0];
+                if (file) {
+                  setFile(URL.createObjectURL(file));
+                  setFileState(file);
+                  setPdfUrl(URL.createObjectURL(file));
+                  setFileName(file.name);
+                }
+              }}
+            />
+            <label
+              className="customFileUpload"
+              // 라벨을 클릭 => input 클릭
+              onClick={() => fileInputRef.current.click()}
+            >
+              {fileName || "파일 선택"}
+            </label>
+            <S.UploadCancelBtn
+              onClick={() => {
+                setFile(null);
+                setFileName(null);
+              }}
+            >
               <img src={cancel} alt="취소 버튼" />
             </S.UploadCancelBtn>
           </S.UploadBox>

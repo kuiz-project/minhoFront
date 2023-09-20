@@ -83,6 +83,7 @@ export const LectureUploadWrapper = styled.section`
   max-width: 712px;
   width: 100%;
   margin: 0 auto;
+  margin-top: 161px;
   display: flex;
   flex-direction: column;
   gap: 31px;
@@ -186,10 +187,17 @@ export const UploadBox = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  button {
+  .hiddenInput {
     color: var(--Main_light, #3730a3);
     font-family: Noto Sans KR_Bold;
     font-size: 16px;
+    display: none;
+  }
+  .customFileUpload {
+    color: var(--Main_light, #3730a3);
+    font-family: Noto Sans KR_Bold;
+    font-size: 16px;
+    cursor: pointer;
   }
 `;
 
@@ -198,7 +206,7 @@ export const UploadCancelBtn = styled.button`
     width: 16px;
     height: 19px;
     position: absolute;
-    top: 10px;
+    top: 7px;
     right: 16px;
     z-index: 5;
   }

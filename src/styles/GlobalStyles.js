@@ -21,7 +21,13 @@ const GlobalStyles = createGlobalStyle`
         font-size: 10px;
         vertical-align: baseline;
     }
+    html{
+        width:100%;
+        height:100%;
+    }
     body{
+        width:100%;
+        height:100%;
         line-height: 1;
         margin-bottom: 100px;
     }
@@ -35,11 +41,22 @@ const GlobalStyles = createGlobalStyle`
           font-family: "Noto Sans KR_Regular", 'sans-serif';
         background: transparent;
         cursor: pointer;
+        border:none;
+        outline:none;
+:focus{
+ outline: none;
+    border: none;
+}
     }
-      :focus {
-        outline: none;
-        border: none;
+    input{
+              border:none;
+        outline:none;
+        :focus{
+ outline: none;
+    border: none;
+}
     }
+
 `;
 
 export default GlobalStyles;
