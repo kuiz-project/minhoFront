@@ -76,3 +76,18 @@ export const IdCheckBtn = styled.button`
   line-height: 20px; /* 142.857% */
   letter-spacing: -0.014px;
 `;
+
+export const SubmitBtn = styled.button`
+  margin: 0 auto;
+  display: flex;
+  max-width: 260px;
+  width: 100%;
+  height: 48px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 44px;
+  background: var(--Main, #312e81);
+  color: var(--Text_White, #fff);
+  font-family: "Noto Sans KR_Bold";
+  font-size: 16px;
+`;

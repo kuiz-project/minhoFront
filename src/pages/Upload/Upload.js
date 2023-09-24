@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import cancel from "../../assets/images/cancel.svg";
 import close from "../../assets/images/dir_close.svg";
 import open from "../../assets/images/dir_open.svg";
@@ -8,11 +8,12 @@ import search from "../../assets/images/search.svg";
 import * as S from "./styles/index";
 import FileItem from "../../components/FileItem/FileItem";
 import { useRecoilState } from "recoil";
-import { currentPdfUrl, currentFile } from "./../../recoil/atom";
+import { currentPdfUrl, currentFile, FooterState } from "./../../recoil/atom";
 
 const Upload = () => {
   const [pdfUrl, setPdfUrl] = useRecoilState(currentPdfUrl);
   const [fileState, setFileState] = useRecoilState(currentFile);
+  const [isFooterState, setIsFooterState] = useRecoilState(FooterState);
 
   // directory 배열
   const initialDirectories = [
@@ -65,6 +66,10 @@ const Upload = () => {
   const handleSearch = (e) => {
     setSearchValue(e.target.value);
   };
+
+  useEffect(() => {
+    setIsFooterState(true);
+  }, []);
 
   return (
     <S.UploadWrapper>

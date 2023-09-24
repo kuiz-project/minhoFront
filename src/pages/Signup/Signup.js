@@ -14,8 +14,16 @@ const Signup = () => {
 
   // 아이디 중복 확인
   const handleIdCheck = async () => {
-    const res = await IdCheckGetAPI.post(userNameValue);
+    const res = await IdCheckGetAPI.get(idValue);
     console.log(res);
+  };
+
+  const handleSubmit = async () => {
+    const submission = {
+      name: userNameValue,
+      id: idValue,
+      password: pwValue,
+    };
   };
 
   const handleuserName = (e) => {
@@ -82,6 +90,7 @@ const Signup = () => {
             onChange={handlePwCheckValue}
           />
         </S.InputBox>
+        <S.SubmitBtn>가입하기</S.SubmitBtn>
       </S.SignupForm>
     </S.SignupWrapper>
   );

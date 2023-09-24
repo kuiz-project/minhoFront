@@ -30,6 +30,8 @@ const GlobalStyles = createGlobalStyle`
         height:100%;
         line-height: 1;
         margin-bottom: 100px;
+	overflow-x: hidden;
+    overflow-y:hidden
     }
     ol, ul{
         list-style: none;
