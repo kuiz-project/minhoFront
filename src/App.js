@@ -3,7 +3,7 @@ import Navigator from "./routes/Navigator";
 import { RecoilRoot } from "recoil";
 import { ThemeProvider } from "styled-components";
 import theme from "./styles/theme";
-
+//sdfsdf
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
