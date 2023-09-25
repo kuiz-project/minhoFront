@@ -1,8 +1,9 @@
 import { styled } from "styled-components";
+
 export const NavbarWrapper = styled.div`
   padding: 22px;
   height: 88px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  
   position: sticky;
   top: 0;
   left: 0;
@@ -43,6 +44,8 @@ export const NavbarWrapper = styled.div`
       cursor: pointer;
     }
   }
+
+  
 `;
 
 export const NavBarItem = styled.button`

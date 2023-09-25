@@ -12,7 +12,7 @@ const Mainlayout = () => {
   return (
     <MainLayoutWrapper>
       {/* 고정 Nav 바 */}
-      <Navbar />
+      <Navbar/>
       {/* 변화하는 부분 */}
       <OutletWrapper>
         <Outlet />
