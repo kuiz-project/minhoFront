@@ -5,7 +5,7 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import MainLayout from "../Layout/Mainlayout";
-import { Home, Login, Test, Pdf, Mytest, Upload, Signup } from "../pages";
+import { Home, Login, Test, Pdf, Mytest, Upload, Signup, TestList} from "../pages";
 import PDFViewer from "./../pages/PDFViewer/PDFViewer";
 
 const router = createBrowserRouter(
@@ -15,6 +15,7 @@ const router = createBrowserRouter(
       <Route path="/login/*" element={<Login />} />
       <Route path="/signup/*" element={<Signup />} />
       <Route path="/test/*" element={<Test />} />
+      <Route path="/testlist" element={<TestList/>} />
       <Route path="/pdf/*" element={<Pdf />} />
       <Route path="/mytest/*" element={<Mytest />} />
       <Route path="/upload/*" element={<Upload />} />

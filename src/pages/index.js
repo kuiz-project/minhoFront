@@ -5,3 +5,4 @@ export { default as Test } from "./Test/Test";
 export { default as Upload } from "./Upload/Upload";
 export { default as Pdf } from "./Pdf/Pdf";
 export { default as Signup } from "./Signup/Signup";
+export { default as TestList } from "./TestList/TestList";
