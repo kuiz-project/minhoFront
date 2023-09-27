@@ -1,12 +1,18 @@
 import { React } from "react";
-import { ThemeProvider } from "styled-components";
 import Navigator from "./routes/Navigator";
+import { RecoilRoot } from "recoil";
+import { ThemeProvider } from "styled-components";
+import theme from "./styles/theme";
 
 const App = () => {
   return (
-    <div className="App">
-      <Navigator />
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <RecoilRoot>
+          <Navigator />
+        </RecoilRoot>
+      </div>
+    </ThemeProvider>
   );
 };
 

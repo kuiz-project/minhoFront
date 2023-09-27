@@ -1,324 +1,213 @@
 import styled from "styled-components";
 
 export const UploadWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  width: 100%;
   section::-webkit-scrollbar {
     display: none;
-    /* Chrome, Safari, Edge */
   }
-  section {
-    border: 1px solid #ededed;
-    width: 234px;
-    height: calc(100vh - 176px);
-    background-color: white;
-    overflow: auto;
-    overflow-y: scroll;
-    /* 스크롤 가능하도록 설정 */
-    scrollbar-width: none;
-    /* Firefox */
-    -ms-overflow-style: none;
-    /* Internet Explorer 11 */
-  }
+`;
 
-  .section_header {
-    border: 1px solid #ededed;
-    border-bottom-width: 2px;
-    height: 40px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    /* 상단에 고정됩니다. */
-    z-index: 3;
-    /* 다른 요소 위에 나타나게 설정합니다. */
-    background-color: white;
-  }
+export const DirTitle = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 220px;
+  height: 32px;
+  border-radius: 5px;
+  background: ${({ isSelected }) => (isSelected ? "#312e81" : "#EDEDED")};
+  padding: 11px;
+`;
 
-  .trash_button {
-    margin-left: 179px;
-    margin-right: 14.87px;
-    cursor: pointer;
-  }
+export const DirName = styled.span`
+  color: ${({ isSelected }) => (isSelected ? "#fff" : "#424242")};
+  font-size: 14px;
+  font-family: "Noto Sans KR_Medium";
+`;
 
-  .add_button {
-    cursor: pointer;
-  }
+export const SideBarWrapper = styled.section`
+  position: fixed;
+  top: 90px;
+  z-index: 998;
+  height: 100%;
+  width: 234px;
+`;
 
-  .section_lists {
-    display: flex;
-    flex-direction: column;
-  }
+export const ToggleBtn = styled.button``;
 
-  .directory {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 8px;
-  }
+export const SideBarHeader = styled.section`
+  display: flex;
+  gap: 15px;
+  border: 1px solid #ededed;
+  background: var(--Text_White, #fff);
+  width: 98%;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 15px;
+  height: 40px;
+`;
 
-  .directory_top {
-    display: flex;
-    align-items: center;
-    width: 220px;
-    height: 32px;
-    flex-shrink: 0;
-    border-radius: 5px;
-    background: var(--Main, #312e81);
-  }
+export const SectionListBox = styled.section`
+  padding: 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
 
-  .directory_name {
-    margin-left: 10px;
-    color: var(--Text_White, #fff);
-    font-family: Noto Sans KR;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
+export const DirBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+`;
 
-  .directory_image {
-    margin-left: 10px;
-    cursor: pointer;
-  }
-  .directory_image2 {
-    margin-left: 9px;
-    cursor: pointer;
-  }
+export const EditBtn = styled.button`
+  color: #555;
+  font-size: 12px;
+  font-weight: 350;
+  z-index: 10;
+`;
 
-  .directory_details {
-    display: flex;
-    flex-direction: column;
-    padding-left: 30px;
-    margin-top: 4px;
-    margin-bottom: 6px;
-    width: 220px;
-    height: 32px;
-    color: #424242;
-    font-family: Noto Sans KR;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
-  .directory_details > div {
-    cursor: pointer;
-  }
+export const DeleteBtn = styled.button``;
 
-  footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 88px;
-    border: 1px solid #e1e1e1;
-    background: #fff;
-    z-index: 1000;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
+export const AddBtn = styled.button``;
 
-  .generate_footer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 636px;
-    height: 48px;
-    margin-left: auto;
-  }
+export const DirInner = styled.div`
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+`;
 
-  .probType {
-    color: #525252;
-    font-family: Noto Sans KR;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-  }
+export const LectureUploadWrapper = styled.section`
+  max-width: 712px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 161px;
+  display: flex;
+  flex-direction: column;
+  gap: 31px;
+`;
 
-  .multiple {
-    display: flex;
-    flex-direction: row;
-    width: 169px;
-    height: 48px;
-    align-items: center;
-  }
+export const LectureWrapper = styled.div`
+  border-radius: 16px;
+  width: 100%;
+  height: 364px;
+  background: var(--Text_White, #fff);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.12);
+  display: flex;
+  gap: 55px;
+  overflow: auto;
+  position: relative;
+  padding: 28px 140px 16px 58px;
+`;
 
-  .subjective {
-    display: flex;
-    flex-direction: row;
-    width: 169px;
-    height: 48px;
-    align-items: center;
-  }
+export const UploadName = styled.span`
+  padding-top: 10px;
+  color: #000;
+  font-family: Noto Sans KR_Medium;
+  font-size: 20px;
+`;
 
-  .number_select {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
+export const UploadSearch = styled.span`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 100%;
+`;
 
-  .number {
-    width: 13px;
-    margin-left: 30px;
-    color: #909090;
-    font-family: Helvetica;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+export const UploadTopSearch = styled.span`
+  position: sticky;
+  border-radius: 62px;
+  height: 48px;
+  width: 400px;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  img {
+    position: absolute;
+    padding: 8px 16px;
   }
+`;
 
-  .number_button {
-    display: flex;
-    flex-direction: column;
-    margin-left: 22px;
-  }
-
-  .up {
-    margin-bottom: 2px;
-    cursor: pointer;
-  }
-
-  .down {
-    cursor: pointer;
-  }
-
-  .generate_button {
-    margin-left: 6px;
-    cursor: pointer;
-  }
-
-  .upload_mid_section {
-    width: 712px;
-    height: 55vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 11vh;
-  }
-
-  .upload_mid_top {
-    width: 712px;
-    height: 364px;
-    border-radius: 16px;
-    background: var(--Text_White, #fff);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.12);
-    margin-bottom: 31px;
-    display: flex;
-    flex-direction: row;
-    overflow: auto;
-  }
-
-  .upload_name {
-    width: 65px;
-    margin-left: 50px;
-    margin-top: 30px;
-    color: #000;
-    font-family: Noto Sans KR;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    position: sticky;
-    top: 30px;
-    z-index: 3;
-  }
-
-  .upload_search {
-    margin-left: 51px;
-    height: 100%;
-  }
-
-  .upload_top_search {
-    width: 100%;
-    height: 66px;
-    position: sticky;
-    top: 0;
-    z-index: 3;
-    background-color: white;
-    padding-top: 30px;
-    margin-bottom: 8px;
-  }
-
-  .search,
-  .search:focus {
-    width: 400px;
-    height: 35px;
-    flex-shrink: 0;
-    border-radius: 8px;
-    background: var(--Gray_3, #f9f9f9);
+export const SearchInput = styled.input`
+  height: 100%;
+  width: 100%;
+  border-radius: 50px;
+  display: flex;
+  background: var(--Gray_3, #f9f9f9);
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding-left: 50px;
+  &:focus {
     border: none;
     outline: none;
+  }
+`;
+
+export const SearchList = styled.span`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const SearchItem = styled.button`
+  height: 45px;
+  padding: 16px 24px;
+  border-radius: 8px;
+  border: 1px solid #e1e1e1;
+  color: var(--Text_Gray, #a3a3a3);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+`;
+
+export const FileUploadWrapper = styled.div`
+  max-width: 712px;
+  width: 100%;
+  height: 84px;
+  border-radius: 16px;
+  align-items: center;
+  background: var(--Text_White, #fff);
+  padding: 24px 74px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+`;
+
+export const UploadBox = styled.div`
+  border-radius: 40px;
+  border: 1px solid #312e81;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+  display: flex;
+  width: 100%;
+  padding: 8px 16px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  .hiddenInput {
+    color: var(--Main_light, #3730a3);
+    font-family: Noto Sans KR_Bold;
     font-size: 16px;
-    padding-left: 10px;
-  }
-
-  .search_list {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .search_list_boxes {
-    padding: 8px 18px;
-    margin-bottom: 8px;
-    border-radius: 40px;
-    border: 1px solid #e1e1e1;
-    align-self: flex-start;
-    color: var(--Text_Gray, #a3a3a3);
-    font-family: Noto Sans KR;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
-
-  .upload_mid_bottom {
-    width: 712px;
-    height: 84px;
-    display: flex;
-    flex-direction: row;
-    border-radius: 16px;
-    background: var(--Text_White, #fff);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
-    align-items: center;
-  }
-
-  .upload_right_section {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    width: 209px;
-    height: calc(100vh - 176px);
-    overflow: auto;
-    overflow-y: scroll;
-    /* 스크롤 가능하도록 설정 */
-    scrollbar-width: none;
-    /* Firefox */
-    -ms-overflow-style: none;
-  }
-
-  .upload_right_section::-webkit-scrollbar {
     display: none;
   }
+  .customFileUpload {
+    color: var(--Main_light, #3730a3);
+    font-family: Noto Sans KR_Bold;
+    font-size: 16px;
+    cursor: pointer;
+  }
+`;
 
-  .kuiz_position_text {
-    color: #000;
-    font-family: Noto Sans KR;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    /* z-index를 높게 설정 */
-    background-color: #fbfbfb;
-    padding-bottom: 20px;
+export const UploadCancelBtn = styled.button`
+  img {
+    width: 16px;
+    height: 19px;
+    position: absolute;
+    top: 7px;
+    right: 16px;
+    z-index: 5;
   }
 `;

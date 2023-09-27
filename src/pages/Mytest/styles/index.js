@@ -167,4 +167,42 @@ export const MytestWrapper = styled.div`
     margin-top: 3px;
     cursor: pointer;
   }
+  @media (max-width: 768px) {
+    // 768px 이하일 때 적용할 스타일을 여기에 작성
+
+    // 예시: 높이 변경
+  
+    .left_header_bottom {
+      color: #000;
+      font-family: Noto Sans KR;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      width:272px;
+      height:35px;
+      margin-bottom:62px;
+    }
+    .left_body_header {
+      display:none;
+    }
+    .left_body_contents {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: 60px;
+      color: #424242;
+      font-family: Noto Sans KR;
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      border-bottom: 1px solid #dad7d7;
+      align-items: center;
+      cursor: pointer;
+    }
+    .left_body_footer{
+      display:none;
+    }
+  }
 `;

@@ -1,124 +1,101 @@
 import { styled } from "styled-components";
+
 export const LoginWrapper = styled.div`
-  box-sizing: border-box;
   display: flex;
-  width: 100vw;
-  height: 100vh;
+  max-width: 440px;
+  gap: 20px;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #fbfbfb;
-  header {
-    display: flex;
-    width: 440px;
-    height: 142px;
-    flex-direction: column;
-    align-items: center;
-    background-color: white;
-    border-radius: 12px;
-    background: var(--Text_White, #fff);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
-  }
+`;
 
-  .header_logo {
-    margin-top: 40px;
-  }
+export const LoginTitleBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 440px;
+  width: 100%;
+  height: 142px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  background: var(--Text_White, #fff);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+`;
 
-  .header_text {
-    height: 18px;
-    width: 80px;
-    display: flex;
-    justify-content: center;
-    color: #494949;
-    font-family: Noto Sans KR;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    padding-top: 7px;
-  }
+export const LoginTitle = styled.span`
+  color: #494949;
+  font-size: 24px;
+  font-family: "Noto Sans KR_Bold";
+`;
 
-  main {
-    display: flex;
-    width: 440px;
-    height: 501px;
-    margin-top: 20px;
-    flex-direction: column;
-    align-items: center;
-    background-color: white;
-    border-radius: 12px;
-    background: var(--Text_White, #fff);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
-  }
+export const LoginForm = styled.div`
+  display: flex;
+  max-width: 440px;
+  width: 100%;
+  padding: 80px 50px 65px 50px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  border-radius: 12px;
+  background: var(--Text_White, #fff);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+`;
 
-  .idpw {
-    margin-top: 80px;
-    width: 326px;
-    height: 108px;
-  }
+export const IdPwWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
 
-  ::placeholder {
-    color: #c8c8c8;
-    font-family: Noto Sans KR;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 22px;
-    /* 137.5% */
-  }
+export const LoginInput = styled.input`
+  padding: 20px;
+  width: 100%;
+  height: 48px;
+  border-radius: 4px;
+  background: var(--Gray_3, #f9f9f9);
+  font-family: "Noto Sans KR_Medium";
+  font-size: 16px;
+`;
 
-  .id,
-  .id:focus {
-    padding-left: 19.5px;
-    width: 100%;
-    height: 48px;
-    border-radius: 4px;
-    background: var(--Gray_3, #f9f9f9);
-    margin-bottom: 12px;
-    border: none;
-    outline: none;
-    color: black;
+export const LoginBtnBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  width: 90%;
+`;
 
-    font-family: Noto Sans KR;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 22px;
-    /* 137.5% */
-  }
+export const LoginBtn = styled.button`
+  display: flex;
+  height: 48px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  border-radius: 44px;
+  background: var(--Main, #312e81);
+  color: var(--Text_White, #fff);
+  font-family: "Noto Sans KR_Bold";
+  font-size: 16px;
+`;
 
-  .pw,
-  .pw:focus {
-    padding-left: 19.5px;
-    width: 100%;
-    height: 48px;
-    border-radius: 4px;
-    background: var(--Gray_3, #f9f9f9);
-    border: none;
-    outline: none;
-    color: black;
-
-    font-family: Noto Sans KR;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 22px;
-    /* 137.5% */
-  }
-
-  .loginsignup {
-    margin-top: 32px;
-    width: 260px;
-    height: 104px;
-  }
-
-  .login {
-    margin-bottom: 5px;
-  }
-
-  .bar {
-    padding: 0;
-    margin-top: 20px;
-    margin-bottom: 30px;
-  }
+export const SignupBtn = styled.button`
+  display: flex;
+  width: 100%;
+  height: 48px;
+  justify-content: center;
+  align-items: center;
+  background: var(--Main, #fff);
+  color: var(--Text_White, #312e81);
+  font-family: "Noto Sans KR_Bold";
+  font-size: 16px;
+  border-radius: 44px;
+  border: 1px solid var(--Main, #312e81);
 `;
