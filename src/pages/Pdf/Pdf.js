@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import pdfjsWorker from "pdfjs-dist/build/pdf.worker.entry";
 import * as pdfjsLib from "pdfjs-dist/webpack";
 import * as S from "./styles/index";
-import { FooterState, currentFile, currentPdfUrl } from "../../recoil/atom";
+import { currentFile, currentPdfUrl } from "../../recoil/atom";
 import { useRecoilState } from "recoil";
 import { Document, Page } from "react-pdf";
 const Pdf = () => {
