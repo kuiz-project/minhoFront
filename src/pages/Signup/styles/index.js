@@ -91,3 +91,8 @@ export const SubmitBtn = styled.button`
   font-family: "Noto Sans KR_Bold";
   font-size: 16px;
 `;
+
+export const Warning = styled.span`
+  color: red;
+  font-size: 13px;
+`;

@@ -9,8 +9,13 @@ const Signup = () => {
   const [idValue, setIdValue] = useState("");
   const [pwValue, setPwValue] = useState("");
   const [pwCheckValue, setPwCheckValue] = useState("");
+  const [pwValidateState, isPwValidateState] = useState(true);
+  const [pwdupValidateState, isPwdupValidateState] = useState(true);
 
   const [isFooterState, setIsFooterState] = useRecoilState(FooterState);
+
+  // 비밀번호 유효성 검사(숫자, 문자를 포함 8자리 이상)
+  const passwordExp = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/;
 
   // 아이디 중복 확인
   const handleIdCheck = async () => {
@@ -38,6 +43,36 @@ const Signup = () => {
   const handlePwCheckValue = (e) => {
     setPwCheckValue(e.target.value);
   };
+
+  const handlePwValidate = () => {
+    if (pwValue === "") {
+      isPwValidateState(true);
+    }
+    if (passwordExp.test(pwValue)) {
+      isPwValidateState(true);
+    } else {
+      isPwValidateState(false);
+    }
+  };
+
+  const handlePwdupValidate = () => {
+    if (pwValue === pwCheckValue && pwCheckValue !== "") {
+      isPwdupValidateState(true);
+    } else {
+      isPwdupValidateState(false);
+    }
+    if (pwValue === "") {
+      isPwValidateState(true);
+    }
+    if (pwCheckValue === "") {
+      isPwdupValidateState(true);
+    }
+  };
+
+  useEffect(() => {
+    handlePwValidate();
+    handlePwdupValidate();
+  }, [pwValue, pwCheckValue]);
 
   // 회원가입 페이지에서는 Footer를 보여주지 않음
   useEffect(() => {
@@ -81,6 +116,7 @@ const Signup = () => {
             onChange={handlePwValue}
           />
         </S.InputBox>
+        {!pwValidateState && <S.Warning>비밀번호를 확인해주세요</S.Warning>}
         <S.InputBox>
           <S.InputTitle>비밀번호 확인</S.InputTitle>
           <S.InputContent
@@ -90,6 +126,9 @@ const Signup = () => {
             onChange={handlePwCheckValue}
           />
         </S.InputBox>
+        {!pwdupValidateState && (
+          <S.Warning>비밀번호가 일치하지 않습니다</S.Warning>
+        )}
         <S.SubmitBtn>가입하기</S.SubmitBtn>
       </S.SignupForm>
     </S.SignupWrapper>
