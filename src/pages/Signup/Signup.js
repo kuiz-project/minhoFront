@@ -3,12 +3,15 @@ import * as S from "./styles/index";
 import { useRecoilState } from "recoil";
 import { FooterState } from "../../recoil/atom";
 import { IdCheckGetAPI } from "../../apis/API";
+import { userPostAPI } from "./../../apis/API";
 
 const Signup = () => {
   const [userNameValue, setUserNameValue] = useState("");
   const [idValue, setIdValue] = useState("");
   const [pwValue, setPwValue] = useState("");
   const [pwCheckValue, setPwCheckValue] = useState("");
+
+  const [idDupState, isIdDupState] = useState(true);
   const [pwValidateState, isPwValidateState] = useState(true);
   const [pwdupValidateState, isPwdupValidateState] = useState(true);
 
@@ -19,8 +22,14 @@ const Signup = () => {
 
   // 아이디 중복 확인
   const handleIdCheck = async () => {
-    const res = await IdCheckGetAPI.get(idValue);
-    console.log(res);
+    if (idValue !== "") {
+      const res = await IdCheckGetAPI.get(idValue);
+      if (res.data.message === "사용가능한 아이디입니다.") {
+        isIdDupState(true);
+      } else {
+        isIdDupState(false);
+      }
+    }
   };
 
   const handleSubmit = async () => {
@@ -29,6 +38,24 @@ const Signup = () => {
       id: idValue,
       password: pwValue,
     };
+
+    // 아이디 중복확인, 비밀번호 유효성 검사, 비밀번호 재확인 까지 모두 통과 된 경우에만 버튼 활성화
+    if (
+      idDupState &&
+      pwValidateState &&
+      pwdupValidateState &&
+      userNameValue !== "" &&
+      idValue !== "" &&
+      pwValue !== "" &&
+      pwCheckValue !== ""
+    ) {
+      try {
+        const res = await userPostAPI.post("", submission);
+        console.log(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
   };
 
   const handleuserName = (e) => {
@@ -36,6 +63,7 @@ const Signup = () => {
   };
   const handleIdValue = (e) => {
     setIdValue(e.target.value);
+    handleIdCheck();
   };
   const handlePwValue = (e) => {
     setPwValue(e.target.value);
@@ -106,7 +134,7 @@ const Signup = () => {
             onChange={handleIdValue}
           />
         </S.InputBox>
-        <S.IdCheckBtn onClick={handleIdCheck}>중복 확인</S.IdCheckBtn>
+        {!idDupState && <S.Warning>이미 존재하는 아이디입니다</S.Warning>}
         <S.InputBox>
           <S.InputTitle>비밀번호</S.InputTitle>
           <S.InputContent
@@ -129,7 +157,7 @@ const Signup = () => {
         {!pwdupValidateState && (
           <S.Warning>비밀번호가 일치하지 않습니다</S.Warning>
         )}
-        <S.SubmitBtn>가입하기</S.SubmitBtn>
+        <S.SubmitBtn onClick={handleSubmit}>가입하기</S.SubmitBtn>
       </S.SignupForm>
     </S.SignupWrapper>
   );
