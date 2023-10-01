@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import * as S from "./styles/index";
-import { useRecoilState } from "recoil";
-import { FooterState } from "../../recoil/atom";
 import { IdCheckGetAPI } from "../../apis/API";
 import { userPostAPI } from "./../../apis/API";
 import { useNavigate } from "react-router-dom";
@@ -17,8 +15,6 @@ const Signup = () => {
   const [idDupState, isIdDupState] = useState(true);
   const [pwValidateState, isPwValidateState] = useState(true);
   const [pwdupValidateState, isPwdupValidateState] = useState(true);
-
-  const [isFooterState, setIsFooterState] = useRecoilState(FooterState);
 
   // 비밀번호 유효성 검사(숫자, 문자를 포함 8자리 이상)
   const passwordExp = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/;
@@ -104,11 +100,6 @@ const Signup = () => {
     handlePwValidate();
     handlePwdupValidate();
   }, [pwValue, pwCheckValue]);
-
-  // 회원가입 페이지에서는 Footer를 보여주지 않음
-  useEffect(() => {
-    setIsFooterState(false);
-  }, []);
 
   return (
     <S.SignupWrapper>

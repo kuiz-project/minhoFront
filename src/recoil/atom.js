@@ -5,11 +5,6 @@ export const LoginState = atom({
   default: false,
 });
 
-export const FooterState = atom({
-  key: "FooterState",
-  default: false,
-});
-
 export const currentPdfUrl = atom({
   key: "currentPdfUrl",
   default: "",
