@@ -4,8 +4,11 @@ import { useRecoilState } from "recoil";
 import { FooterState } from "../../recoil/atom";
 import { IdCheckGetAPI } from "../../apis/API";
 import { userPostAPI } from "./../../apis/API";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate();
+
   const [userNameValue, setUserNameValue] = useState("");
   const [idValue, setIdValue] = useState("");
   const [pwValue, setPwValue] = useState("");
@@ -51,7 +54,7 @@ const Signup = () => {
     ) {
       try {
         const res = await userPostAPI.post("", submission);
-        console.log(res.data);
+        console.log(res);
       } catch (err) {
         console.log(err);
       }
