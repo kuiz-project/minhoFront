@@ -109,61 +109,61 @@ const Upload = () => {
             </S.DirBox>
           ))}
         </S.SectionListBox>
+        
       </S.SideBarWrapper>
-      <S.LectureUploadWrapper>
-        <S.LectureWrapper>
-          <S.UploadName>강의명</S.UploadName>
-          <S.UploadSearch>
-            <S.UploadTopSearch>
-              <img src={search} alt="검색 이미지" />
-              <S.SearchInput
-                type="text"
-                value={searchValue}
-                onChange={handleSearch}
-                placeholder="강의명을 입력하세요"
+      <S.Wrapper>
+        <S.LectureUploadWrapper>
+          <S.LectureDirectoryWrapper>
+
+          </S.LectureDirectoryWrapper>
+          <S.LectureName>
+            
+          </S.LectureName>
+          <S.FileUploadWrapper>
+            <div className="fileuploadtext">파일선택</div>
+            
+            <S.UploadBox>
+              <input
+                type="file"
+                ref={fileInputRef}
+                className="hiddenInput"
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  if (file) {
+                    setFile(URL.createObjectURL(file));
+                    setFileState(file);
+                    setPdfUrl(URL.createObjectURL(file));
+                    setFileName(file.name);
+                  }
+                }}
               />
-            </S.UploadTopSearch>
-            <S.SearchList>
-              <S.SearchItem>마지막</S.SearchItem>
-              <S.SearchItem>마지막123213</S.SearchItem>
-              <S.SearchItem>마지막</S.SearchItem>
-            </S.SearchList>
-          </S.UploadSearch>
-        </S.LectureWrapper>
-        <S.FileUploadWrapper>
-          <S.UploadBox>
-            <input
-              type="file"
-              ref={fileInputRef}
-              className="hiddenInput"
-              onChange={(e) => {
-                const file = e.target.files[0];
-                if (file) {
-                  setFile(URL.createObjectURL(file));
-                  setFileState(file);
-                  setPdfUrl(URL.createObjectURL(file));
-                  setFileName(file.name);
-                }
-              }}
-            />
-            <label
-              className="customFileUpload"
-              // 라벨을 클릭 => input 클릭
-              onClick={() => fileInputRef.current.click()}
-            >
-              {fileName || "파일 선택"}
-            </label>
-            <S.UploadCancelBtn
-              onClick={() => {
-                setFile(null);
-                setFileName(null);
-              }}
-            >
-              <img src={cancel} alt="취소 버튼" />
-            </S.UploadCancelBtn>
-          </S.UploadBox>
-        </S.FileUploadWrapper>
-      </S.LectureUploadWrapper>
+              
+              <label
+                className="customFileUpload"
+                // 라벨을 클릭 => input 클릭
+                onClick={() => fileInputRef.current.click()}
+              >
+                
+                {fileName || "파일을 업로드 해주세요"}
+              </label>
+              <S.UploadCancelBtn
+                onClick={() => {
+                  setFile(null);
+                  setFileName(null);
+                }}
+              >
+                <img src={cancel} alt="취소 버튼" />
+              </S.UploadCancelBtn>
+
+            </S.UploadBox>
+
+          </S.FileUploadWrapper>
+
+        </S.LectureUploadWrapper>
+
+
+      </S.Wrapper>
+
     </S.UploadWrapper>
   );
 };
