@@ -7,20 +7,24 @@ export const MytestWrapper = styled.div`
   overflow: auto;
   overflow-y: scroll;
   /* 스크롤 가능하도록 설정 */
-  scrollbar-width: none;
-  /* Firefox */
-  .mytest::-webkit-scrollbar {
-    display: none;
+  &::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari, Edge의 스크롤바를 숨김 */
+}
+
+-ms-overflow-style: none;  /* IE, Edge에서 스크롤바를 숨김 */
+scrollbar-width: none;  /* Firefox에서 스크롤바를 숨김 */
   }
 
   .mytest_left {
-    margin-left: 81px;
     display: flex;
     flex-direction: column;
+    justify-content:center;
+    align-items:center;
   }
 
   .left_header {
-    margin-top: 42px;
+    margin-top:50px;
+    padding-left:11%;
     display: flex;
     flex-direction: column;
   }
@@ -49,6 +53,7 @@ export const MytestWrapper = styled.div`
     height: 100%;
     display: flex;
     flex-direction: column;
+    
   }
 
   .left_body_header {
