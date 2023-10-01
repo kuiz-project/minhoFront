@@ -5,6 +5,14 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { LoginState } from "../../recoil/atom";
 
+import { SignupWrapper } from "./../Signup/styles/index";
+import {
+  InputBox,
+  InputContent,
+  SignupForm,
+  InputTitle,
+} from "../Signup/styles";
+
 const LoginPage = () => {
   const navigate = useNavigate();
   const [isLoginState, setIsLoginState] = useRecoilState(LoginState);
@@ -13,34 +21,38 @@ const LoginPage = () => {
   const [pw, setPw] = useState("");
 
   return (
-    <S.LoginWrapper>
+    <SignupWrapper>
       <S.LoginTitleBox>
         <img src={logo} alt="로고 이미지" />
         <S.LoginTitle>로그인</S.LoginTitle>
       </S.LoginTitleBox>
-      <S.LoginForm>
-        <S.IdPwWrapper>
-          <S.LoginInput
+      <SignupForm>
+        <InputBox>
+          <InputTitle>아이디</InputTitle>
+          <InputContent
             type="text"
             placeholder="ID"
             value={id}
             onChange={(e) => setId(e.target.value)}
           />
-          <S.LoginInput
+        </InputBox>
+        <InputBox>
+          <InputTitle>비밀번호</InputTitle>
+          <InputContent
             type="password"
             placeholder="PW"
             value={pw}
             onChange={(e) => setPw(e.target.value)}
           />
-        </S.IdPwWrapper>
+        </InputBox>
         <S.LoginBtnBox>
           <S.LoginBtn onClick={() => navigate("/login")}>로그인</S.LoginBtn>
           <S.SignupBtn onClick={() => navigate("/signup")}>
             회원가입
           </S.SignupBtn>
         </S.LoginBtnBox>
-      </S.LoginForm>
-    </S.LoginWrapper>
+      </SignupForm>
+    </SignupWrapper>
   );
 };
 
