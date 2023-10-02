@@ -96,42 +96,89 @@ export const LectureUploadWrapper = styled.section`
   display: flex;
   flex-direction: column;
 `;
+
 export const LectureDirectoryWrapper = styled.div`
-max-width: 608px;
+  display:flex;
+  flex-direction:row;
+  max-width: 608px;
   width: 100%;
   height: 112px;
   background: var(--Text_White, #fff);
   padding: 24px 74px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
   margin-bottom:24px;
+  .diruploadtext{
+    margin-top:17px;
+    margin-left:-28px;
+    width:100px;
+    margin-right: 27px;
+    height:15px;
+    color: #000;
+    font-family: Noto Sans KR;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  .diruploadinput{
+    width: 350px;
+height: 48px;
+flex-shrink: 0;
+border-radius: 4px;
+background: #EAEAEA;
+margin-top:8px;
+  }
 `;
 
 export const LectureName = styled.div`
-max-width: 608px;
+display:flex;
+flex-direction:row;
+  max-width: 608px;
   width: 100%;
   height: 112px;
   background: var(--Text_White, #fff);
   padding: 24px 74px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
   margin-bottom:24px;
+  .lectureuploadtext{
+    margin-top:17px;
+    margin-left:8.5px;
+    width:90px;
+    margin-right: 1px;
+    height:15px;
+    color: #000;
+  font-family: Noto Sans KR;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  }
+  .lectureuploadinput{
+    width: 350px;
+height: 48px;
+flex-shrink: 0;
+border-radius: 4px;
+background: #EAEAEA;
+margin-top:8px;
+  }
 `;
 
 export const FileUploadWrapper = styled.div`
-display:flex;
-flex-direction:row;
-.fileuploadtext{
-  margin-top:17px;
-  margin-left:-10px;
-  width:90px;
-  margin-right: 27px;
-  height:15px;
-  color: #000;
-font-family: Noto Sans KR;
-font-size: 20px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
-}
+  display:flex;
+  flex-direction:row;
+  .fileuploadtext{
+    margin-top:17px;
+    margin-left:-10px;
+    width:90px;
+    margin-right: 27px;
+    height:15px;
+    color: #000;
+    font-family: Noto Sans KR;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
   max-width: 608px;
   width: 100%;
   height: 112px;
@@ -141,10 +188,9 @@ line-height: normal;
 `;
 
 export const UploadBox = styled.div`
-border-radius: 40px;
-
-border: 1px solid #E1E1E1;
-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.10);
+  border-radius: 40px;
+  border: 1px solid #E1E1E1;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.10);
   display: flex;
   width: 404px;
   height:42px;
@@ -152,23 +198,22 @@ box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.10);
   justify-content: center;
   align-items: center;
   position: relative;
-
   .hiddenInput {
     color: var(--Main_light, #3730A3);
-font-family: Noto Sans KR;
-font-size: 17px;
-font-style: normal;
-font-weight: 400;
-line-height: 26px; /* 152.941% */
+    font-family: Noto Sans KR;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px; /* 152.941% */
     display: none;
   }
   .customFileUpload {
     color: var(--Main_light, #3730A3);
-font-family: Noto Sans KR;
-font-size: 17px;
-font-style: normal;
-font-weight: 400;
-line-height: 26px; /* 152.941% */
+    font-family: Noto Sans KR;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px; /* 152.941% */
     cursor: pointer;
   }
 `;
@@ -184,8 +229,8 @@ export const UploadCancelBtn = styled.button`
   }
 `;
 export const Footer = styled.div`
-display: flex;
-width: 100%;
-heigth: 92px;
-background-color:red;
+  display: flex;
+  width: 100%;
+  heigth: 92px;
+  background-color:red;
 `;

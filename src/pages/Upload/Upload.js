@@ -11,6 +11,8 @@ import { useRecoilState } from "recoil";
 import { currentPdfUrl, currentFile } from "./../../recoil/atom";
 
 const Upload = () => {
+  const [directoryName, setDirectoryName] = useState("");
+  const [lectureName, setLectureName] = useState("");
   const [pdfUrl, setPdfUrl] = useRecoilState(currentPdfUrl);
   const [fileState, setFileState] = useRecoilState(currentFile);
 
@@ -109,19 +111,36 @@ const Upload = () => {
             </S.DirBox>
           ))}
         </S.SectionListBox>
-        
+
       </S.SideBarWrapper>
       <S.Wrapper>
         <S.LectureUploadWrapper>
           <S.LectureDirectoryWrapper>
-
+            <div className="diruploadtext">디렉토리명</div>
+            <div className="diruploadinput">
+            <input 
+              value={directoryName}
+              style={{ width: '360px', height: '48px', border: 'none', borderRadius: '4px', background: '#EAEAEA' }}
+              onChange={(e) => setDirectoryName(e.target.value)}
+              placeholder="디렉토리명을 입력하세요"
+            />
+            </div>
+            
           </S.LectureDirectoryWrapper>
           <S.LectureName>
+            <div className="lectureuploadtext">강의명</div>
+            <div className="lectureuploadinput">
+            <input
+              style={{ width: '360px', height: '48px', border: 'none', borderRadius: '4px', background: '#EAEAEA' }}
+              value={lectureName}
+              onChange={(e) => setLectureName(e.target.value)}
+              placeholder="강의명을 입력하세요"
+            />
+            </div>
             
           </S.LectureName>
           <S.FileUploadWrapper>
             <div className="fileuploadtext">파일선택</div>
-            
             <S.UploadBox>
               <input
                 type="file"
@@ -137,13 +156,13 @@ const Upload = () => {
                   }
                 }}
               />
-              
+
               <label
                 className="customFileUpload"
                 // 라벨을 클릭 => input 클릭
                 onClick={() => fileInputRef.current.click()}
               >
-                
+
                 {fileName || "파일을 업로드 해주세요"}
               </label>
               <S.UploadCancelBtn
