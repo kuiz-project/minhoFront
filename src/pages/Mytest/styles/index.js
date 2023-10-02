@@ -190,7 +190,7 @@
       height:92px;
       bottom:0;
       padding-top:22px;
-      margin-bottom:92px;
+      margin-bottom:88px;
       border-top: 1px solid #E1E1E1;
 background: #FFF;
 
