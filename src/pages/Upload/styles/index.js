@@ -95,6 +95,7 @@ export const LectureUploadWrapper = styled.section`
   width: 100%;
   display: flex;
   flex-direction: column;
+  margin-bottom:150px;
 `;
 
 export const LectureDirectoryWrapper = styled.div`
@@ -228,9 +229,20 @@ export const UploadCancelBtn = styled.button`
     z-index: 5;
   }
 `;
-export const Footer = styled.div`
-  display: flex;
-  width: 100%;
-  heigth: 92px;
-  background-color:red;
+export const footer = styled.div`
+display:flex;
+flex-direction:row;
+align-items:center;
+justify-content:flex-end;
+padding-right:64px;
+  width:100%;
+  height:92px;
+  border-top: 1px solid #E1E1E1;
+background: #FFF;
+
+/* header */
+box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
+  position:fixed;
+  bottom:0;
+  margin-left:-230px;
 `;

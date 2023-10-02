@@ -5,6 +5,7 @@ import open from "../../assets/images/dir_open.svg";
 import add from "../../assets/images/add.svg";
 import trash from "../../assets/images/trash.svg";
 import search from "../../assets/images/search.svg";
+import pdfuploadN from "../../assets/images/pdfupload_n.svg";
 import * as S from "./styles/index";
 import FileItem from "../../components/FileItem/FileItem";
 import { useRecoilState } from "recoil";
@@ -180,9 +181,11 @@ const Upload = () => {
 
         </S.LectureUploadWrapper>
 
-
+        <S.footer>
+        <img src={pdfuploadN} alt="pdf 업로드 전 버튼" />
+    </S.footer>
       </S.Wrapper>
-
+    
     </S.UploadWrapper>
   );
 };
