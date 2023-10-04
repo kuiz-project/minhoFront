@@ -5,12 +5,7 @@ export const LoginState = atom({
   default: false,
 });
 
-export const currentPdfUrl = atom({
-  key: "currentPdfUrl",
-  default: "",
-});
-
-export const currentFile = atom({
-  key: "currentFile",
+export const currentFileState = atom({
+  key: "currentFileState",
   default: "",
 });

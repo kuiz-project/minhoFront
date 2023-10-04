@@ -22,11 +22,16 @@ const Signup = () => {
   // 아이디 중복 확인
   const handleIdCheck = async () => {
     if (idValue !== "") {
-      const res = await IdCheckGetAPI.get(idValue);
-      if (res.data.message === "사용가능한 아이디입니다.") {
-        isIdDupState(true);
-      } else {
-        isIdDupState(false);
+      try {
+        const res = await IdCheckGetAPI.get(idValue);
+        if (res.data.message === "사용가능한 아이디입니다.") {
+          isIdDupState(true);
+        }
+      } catch (err) {
+        console.log(err);
+        if (err.response.status === 409 || err.response.status === 500) {
+          isIdDupState(false);
+        }
       }
     }
   };
@@ -50,7 +55,9 @@ const Signup = () => {
     ) {
       try {
         const res = await userPostAPI.post("", submission);
-        console.log(res);
+        if (res.status === 201) {
+          navigate("/upload");
+        }
       } catch (err) {
         console.log(err);
       }

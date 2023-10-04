@@ -191,7 +191,6 @@ export const UploadBox = styled.div`
     color: var(--Main_light, #3730a3);
     font-family: Noto Sans KR_Bold;
     font-size: 16px;
-    display: none;
   }
   .customFileUpload {
     color: var(--Main_light, #3730a3);
@@ -211,3 +210,5 @@ export const UploadCancelBtn = styled.button`
     z-index: 5;
   }
 `;
+
+export const ViewWrapper = styled.div``;

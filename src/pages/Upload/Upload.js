@@ -7,12 +7,17 @@ import trash from "../../assets/images/trash.svg";
 import search from "../../assets/images/search.svg";
 import * as S from "./styles/index";
 import FileItem from "../../components/FileItem/FileItem";
+import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { currentPdfUrl, currentFile } from "./../../recoil/atom";
+import { currentFileState } from "../../recoil/atom";
 
 const Upload = () => {
-  const [pdfUrl, setPdfUrl] = useRecoilState(currentPdfUrl);
-  const [fileState, setFileState] = useRecoilState(currentFile);
+  const [pdfFile, setpdfFile] = useState(null);
+
+  const [currentFile, setCurrentFile] = useRecoilState(currentFileState);
+  const navigate = useNavigate();
+
+  const fileType = ["application/pdf"];
 
   // directory 배열
   const initialDirectories = [
@@ -43,12 +48,8 @@ const Upload = () => {
       ],
     },
   ];
-
-  const fileInputRef = useRef(null);
   const [directories, setDirectories] = useState(initialDirectories);
   const [searchValue, setSearchValue] = useState("");
-  const [file, setFile] = useState(null);
-  const [fileName, setFileName] = useState(""); // 파일 이름
 
   // directory 클릭
   const handleDirectory = (dirId) => {
@@ -64,6 +65,27 @@ const Upload = () => {
   // 검색어
   const handleSearch = (e) => {
     setSearchValue(e.target.value);
+  };
+
+  const handleChange = (e) => {
+    console.log("pdf");
+    let selectedFile = e.target.files[0];
+    if (selectedFile) {
+      if (selectedFile && fileType.includes(selectedFile.type)) {
+        let reader = new FileReader();
+        reader.readAsDataURL(selectedFile);
+        reader.onload = (e) => {
+          setpdfFile(e.target.result);
+          setCurrentFile(e.target.result);
+          console.log("pdf");
+          navigate("/pdf");
+        };
+      } else {
+        setpdfFile(null);
+      }
+    } else {
+      console.log("please select");
+    }
   };
 
   return (
@@ -134,31 +156,10 @@ const Upload = () => {
           <S.UploadBox>
             <input
               type="file"
-              ref={fileInputRef}
               className="hiddenInput"
-              onChange={(e) => {
-                const file = e.target.files[0];
-                if (file) {
-                  setFile(URL.createObjectURL(file));
-                  setFileState(file);
-                  setPdfUrl(URL.createObjectURL(file));
-                  setFileName(file.name);
-                }
-              }}
+              onChange={handleChange}
             />
-            <label
-              className="customFileUpload"
-              // 라벨을 클릭 => input 클릭
-              onClick={() => fileInputRef.current.click()}
-            >
-              {fileName || "파일 선택"}
-            </label>
-            <S.UploadCancelBtn
-              onClick={() => {
-                setFile(null);
-                setFileName(null);
-              }}
-            >
+            <S.UploadCancelBtn>
               <img src={cancel} alt="취소 버튼" />
             </S.UploadCancelBtn>
           </S.UploadBox>
