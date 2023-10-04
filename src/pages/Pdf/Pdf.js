@@ -39,6 +39,18 @@ const Pdf = () => {
     console.log(e.currentPage);
   };
 
+  const pageLayout = {
+    buildPageStyles: () => ({
+      alignItems: "center",
+      display: "flex",
+      justifyContent: "center",
+    }),
+    transformSize: ({ size }) => ({
+      height: size.height + 30,
+      width: size.width + 30,
+    }),
+  };
+
   return (
     <S.PdfWrapper>
       <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
@@ -50,6 +62,7 @@ const Pdf = () => {
             fileUrl={viewpdf}
             plugins={[thumbnailPluginInstance]}
             onPageChange={handlerPagePage}
+            pageLayout={pageLayout}
             className="viewer"
             style={{ overflow: "auto" }}
           />
