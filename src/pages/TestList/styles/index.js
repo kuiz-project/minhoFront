@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 
 export const TestWrapper = styled.div`
   width: 820px;
-  height: 89%;
+  height: 100vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -189,4 +189,44 @@ export const TestProblemSubjective = styled.textarea`
   outline: none;
   overflow: auto;
   text-align: left;
+`;
+export const AppContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 88.5vh;
+  @media (min-height: 1024px) {
+    height: 91.5vh;
+  }
+`;
+
+export const StickyFooter = styled.footer`
+  background-color: white;
+  width: 100%;
+  height: 88px;
+  position: sticky;
+  z-index: 10000;
+  top: 0;
+`;
+export const SubmitButton = styled.button`
+  margin-top: 11px;
+  margin-right: 108px;
+  display: flex;
+  width: 240px;
+  height: 48px;
+  padding: 0px 16px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 44px;
+  margin-left: auto;
+  font-size: 16px;
+
+  background-color: #312e81;
+  color: white;
+
+  &:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+    color: black;
+  }
+  // 추가로 필요한 스타일링...
 `;
