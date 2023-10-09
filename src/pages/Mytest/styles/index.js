@@ -1,6 +1,6 @@
-  import styled from "styled-components";
+import styled from "styled-components";
 
-  export const MytestWrapper = styled.div`
+export const MytestWrapper = styled.div`
     width: 100%;
     height: 100vh;
     background-color: white;
@@ -189,7 +189,7 @@
       width:100%;
       height:92px;
       bottom:0;
-      padding-top:22px;
+      padding-top:15px;
       margin-bottom:88px;
       border-top: 1px solid #E1E1E1;
 background: #FFF;

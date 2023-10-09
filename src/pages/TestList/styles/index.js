@@ -75,6 +75,7 @@ export const TestProblem = styled.div`
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
   border-top: 1px solid transparent;
 `;
+
 export const TestProblem_2 = styled.div`
   display: flex;
   flex-direction: column;
@@ -93,7 +94,6 @@ export const TestProblem1 = styled.div`
   height: 26px;
   border-radius: 16px;
   margin-left: 64px;
-
   leading-trim: both;
   text-edge: cap;
   font-family: Noto Sans KR;
@@ -110,6 +110,7 @@ export const TestProblem1 = styled.div`
   color: ${({ isSelected }) => (isSelected ? "white" : "#a3a3a3;")};
   cursor: pointer; // 선택지를 클릭할 수 있음을 나타내기 위해
 `;
+
 export const TestProblem2 = styled.div`
   width: 100px;
   height: 26px;
@@ -132,6 +133,7 @@ export const TestProblem2 = styled.div`
   color: ${({ isSelected }) => (isSelected ? "white" : "#a3a3a3;")};
   cursor: pointer; // 선택지를 클릭할 수 있음을 나타내기 위해
 `;
+
 export const TestProblem3 = styled.div`
   width: 100px;
   height: 26px;
@@ -154,6 +156,7 @@ export const TestProblem3 = styled.div`
   color: ${({ isSelected }) => (isSelected ? "white" : "#a3a3a3;")};
   cursor: pointer; // 선택지를 클릭할 수 있음을 나타내기 위해
 `;
+
 export const TestProblem4 = styled.div`
   width: 100px;
   height: 26px;
@@ -190,43 +193,43 @@ export const TestProblemSubjective = styled.textarea`
   overflow: auto;
   text-align: left;
 `;
+
 export const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 88.5vh;
+  height: 87vh;
   @media (min-height: 1024px) {
-    height: 91.5vh;
+    height: 91vh;
   }
 `;
 
 export const StickyFooter = styled.footer`
   background-color: white;
+  box-shadow: 0px 4px 4px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
-  height: 88px;
+  height: 100px;
   position: sticky;
   z-index: 10000;
   top: 0;
 `;
+
 export const SubmitButton = styled.button`
-  margin-top: 11px;
   margin-right: 108px;
   display: flex;
   width: 240px;
   height: 48px;
   padding: 0px 16px;
+  margin-top: 14px;
   justify-content: center;
   align-items: center;
   border-radius: 44px;
   margin-left: auto;
   font-size: 16px;
-
   background-color: #312e81;
   color: white;
-
   &:disabled {
     background-color: #bdc3c7;
     cursor: not-allowed;
     color: black;
   }
-  // 추가로 필요한 스타일링...
 `;
