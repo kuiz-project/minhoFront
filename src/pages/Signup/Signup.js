@@ -24,6 +24,7 @@ const Signup = () => {
     if (idValue !== "") {
       try {
         const res = await IdCheckGetAPI.get(idValue);
+        console.log(res);
         if (res.data.message === "사용가능한 아이디입니다.") {
           isIdDupState(true);
         }
@@ -69,7 +70,6 @@ const Signup = () => {
   };
   const handleIdValue = (e) => {
     setIdValue(e.target.value);
-    handleIdCheck();
   };
   const handlePwValue = (e) => {
     setPwValue(e.target.value);
@@ -107,6 +107,10 @@ const Signup = () => {
     handlePwValidate();
     handlePwdupValidate();
   }, [pwValue, pwCheckValue]);
+
+  useEffect(() => {
+    handleIdCheck();
+  }, [idValue]);
 
   return (
     <S.SignupWrapper>
