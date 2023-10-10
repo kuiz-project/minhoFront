@@ -75,21 +75,21 @@ const Navbar = () => {
             );
           })}
         </div>
-      </section>
-      <section className="navBarRightBox">
-        {isLoginState ? (
-          <img src={user} className="userProfile" alt="유저 로고 이미지" />
-        ) : (
-          <button
-            src={login}
-            className="loginBtn"
-            onClick={() => {
-              navigate("/login");
-            }}
-          >
-            로그인
-          </button>
-        )}
+        <section className="navBarRightBox">
+          {isLoginState ? (
+            <img src={user} className="userProfile" alt="유저 로고 이미지" />
+          ) : (
+            <button
+              src={login}
+              className="loginBtn"
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              로그인
+            </button>
+          )}
+        </section>
       </section>
     </S.NavbarWrapper>
   );
