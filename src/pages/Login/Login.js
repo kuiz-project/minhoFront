@@ -15,8 +15,8 @@ import {
 } from "../Signup/styles";
 const LoginPage = () => {
   const navigate = useNavigate();
-  const [isLoginState, setIsLoginState] = useRecoilState(LoginState);
 
+  const [isLoginState, setIsLoginState] = useRecoilState(LoginState);
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
@@ -24,16 +24,21 @@ const LoginPage = () => {
   const handleLogin = async () => {
     const submission = {
       id: id,
-      pw: pw,
+      password: pw,
     };
     try {
       const res = await loginPostAPI.post("", submission);
-      console.log(res);
+      if (res.status === 200) {
+        console.log("로그인 성공");
+        setLoginState(true);
+        navigate("/upload");
+      }
     } catch (err) {
       if (err.response.status === 400) {
         console.log("아이디나 비밀번호 오류");
         setIsSuccess(false);
-      } else if (err.response.status === 500) {
+      }
+      if (err.response.status === 500) {
         console.log("서버 에러");
       }
     }

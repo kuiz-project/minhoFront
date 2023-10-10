@@ -9,7 +9,6 @@ import { LoginState } from "../../recoil/atom";
 
 const Navbar = () => {
   const navigate = useNavigate();
-
   // 로그인 상태
   const [isLoginState, setIsLoginState] = useRecoilState(LoginState);
 

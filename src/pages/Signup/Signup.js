@@ -3,6 +3,8 @@ import * as S from "./styles/index";
 import { IdCheckGetAPI } from "../../apis/API";
 import { userPostAPI } from "./../../apis/API";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { LoginState } from "../../recoil/atom";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -11,7 +13,6 @@ const Signup = () => {
   const [idValue, setIdValue] = useState("");
   const [pwValue, setPwValue] = useState("");
   const [pwCheckValue, setPwCheckValue] = useState("");
-
   const [idDupState, isIdDupState] = useState(true);
   const [pwValidateState, isPwValidateState] = useState(true);
   const [pwdupValidateState, isPwdupValidateState] = useState(true);
@@ -24,7 +25,6 @@ const Signup = () => {
     if (idValue !== "") {
       try {
         const res = await IdCheckGetAPI.get(idValue);
-        console.log(res);
         if (res.data.message === "사용가능한 아이디입니다.") {
           isIdDupState(true);
         }
