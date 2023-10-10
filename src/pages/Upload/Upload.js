@@ -5,6 +5,7 @@ import open from "../../assets/images/dir_open.svg";
 import add from "../../assets/images/add.svg";
 import trash from "../../assets/images/trash.svg";
 import search from "../../assets/images/search.svg";
+import pdfuploadN from "../../assets/images/pdfupload_n.svg";
 import * as S from "./styles/index";
 import FileItem from "../../components/FileItem/FileItem";
 import { useNavigate } from "react-router-dom";
@@ -12,12 +13,8 @@ import { useRecoilState } from "recoil";
 import { currentFileState } from "../../recoil/atom";
 
 const Upload = () => {
-  const [pdfFile, setpdfFile] = useState(null);
-
-  const [currentFile, setCurrentFile] = useRecoilState(currentFileState);
-  const navigate = useNavigate();
-
-  const fileType = ["application/pdf"];
+  const [pdfUrl, setPdfUrl] = useRecoilState(currentPdfUrl);
+  const [fileState, setFileState] = useRecoilState(currentFile);
 
   // directory 배열
   const initialDirectories = [
@@ -156,10 +153,31 @@ const Upload = () => {
           <S.UploadBox>
             <input
               type="file"
+              ref={fileInputRef}
               className="hiddenInput"
-              onChange={handleChange}
+              onChange={(e) => {
+                const file = e.target.files[0];
+                if (file) {
+                  setFile(URL.createObjectURL(file));
+                  setFileState(file);
+                  setPdfUrl(URL.createObjectURL(file));
+                  setFileName(file.name);
+                }
+              }}
             />
-            <S.UploadCancelBtn>
+            <label
+              className="customFileUpload"
+              // 라벨을 클릭 => input 클릭
+              onClick={() => fileInputRef.current.click()}
+            >
+              {fileName || "파일 선택"}
+            </label>
+            <S.UploadCancelBtn
+              onClick={() => {
+                setFile(null);
+                setFileName(null);
+              }}
+            >
               <img src={cancel} alt="취소 버튼" />
             </S.UploadCancelBtn>
           </S.UploadBox>
