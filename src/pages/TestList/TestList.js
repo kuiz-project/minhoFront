@@ -75,7 +75,9 @@ const TestList = () => {
               return (
                 <S.TestMultipleChoice key={index}>
                   <S.TestTitle>
-                    <S.TestTitleSmallTitle>객관식 문제</S.TestTitleSmallTitle>
+                    <S.TestTitleSmallTitle>
+                      <S.SmallTitle>객관식 문제</S.SmallTitle>
+                    </S.TestTitleSmallTitle>
                     <S.TestTitleMain>
                       {index + 1}. {question.main}
                     </S.TestTitleMain>

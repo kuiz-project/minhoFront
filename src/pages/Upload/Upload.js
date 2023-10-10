@@ -112,33 +112,42 @@ const Upload = () => {
             </S.DirBox>
           ))}
         </S.SectionListBox>
-
       </S.SideBarWrapper>
       <S.Wrapper>
         <S.LectureUploadWrapper>
           <S.LectureDirectoryWrapper>
             <div className="diruploadtext">디렉토리명</div>
             <div className="diruploadinput">
-            <input 
-              value={directoryName}
-              style={{ width: '360px', height: '48px', border: 'none', borderRadius: '4px', background: '#EAEAEA' }}
-              onChange={(e) => setDirectoryName(e.target.value)}
-              placeholder="디렉토리명을 입력하세요"
-            />
+              <input
+                value={directoryName}
+                style={{
+                  width: "360px",
+                  height: "48px",
+                  border: "none",
+                  borderRadius: "4px",
+                  background: "#EAEAEA",
+                }}
+                onChange={(e) => setDirectoryName(e.target.value)}
+                placeholder="디렉토리명을 입력하세요"
+              />
             </div>
-            
           </S.LectureDirectoryWrapper>
           <S.LectureName>
             <div className="lectureuploadtext">강의명</div>
             <div className="lectureuploadinput">
-            <input
-              style={{ width: '360px', height: '48px', border: 'none', borderRadius: '4px', background: '#EAEAEA' }}
-              value={lectureName}
-              onChange={(e) => setLectureName(e.target.value)}
-              placeholder="강의명을 입력하세요"
-            />
+              <input
+                style={{
+                  width: "360px",
+                  height: "48px",
+                  border: "none",
+                  borderRadius: "4px",
+                  background: "#EAEAEA",
+                }}
+                value={lectureName}
+                onChange={(e) => setLectureName(e.target.value)}
+                placeholder="강의명을 입력하세요"
+              />
             </div>
-            
           </S.LectureName>
           <S.FileUploadWrapper>
             <div className="fileuploadtext">파일선택</div>
@@ -163,7 +172,6 @@ const Upload = () => {
                 // 라벨을 클릭 => input 클릭
                 onClick={() => fileInputRef.current.click()}
               >
-
                 {fileName || "파일을 업로드 해주세요"}
               </label>
               <S.UploadCancelBtn
@@ -174,18 +182,14 @@ const Upload = () => {
               >
                 <img src={cancel} alt="취소 버튼" />
               </S.UploadCancelBtn>
-
             </S.UploadBox>
-
           </S.FileUploadWrapper>
-
         </S.LectureUploadWrapper>
 
         <S.footer>
-        <img src={pdfuploadN} alt="pdf 업로드 전 버튼" />
-    </S.footer>
+          <img src={pdfuploadN} alt="pdf 업로드 전 버튼" />
+        </S.footer>
       </S.Wrapper>
-    
     </S.UploadWrapper>
   );
 };

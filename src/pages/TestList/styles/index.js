@@ -32,11 +32,21 @@ export const TestSubjective = styled.div`
   height: 100%;
 `;
 
+export const SmallTitle = styled.div`
+  width: 50px;
+  height: 16px;
+  display: flex;
+  flex-direction: row;
+  background-color: red;
+`;
+
 export const TestTitleSmallTitle = styled.div`
-  width: 73px;
-  height: 15px;
+  width: 60px;
+  padding-left: 5.5px;
+  height: 16px;
+  border-radius: 4px;
+  background: #fff;
   margin-left: 48px;
-  padding-top: 8px;
   color: #2f3042;
   leading-trim: both;
   text-edge: cap;
@@ -45,6 +55,7 @@ export const TestTitleSmallTitle = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  background-color: white;
 `;
 
 export const TestTitleMain = styled.div`
@@ -219,7 +230,7 @@ export const SubmitButton = styled.button`
   width: 240px;
   height: 48px;
   padding: 0px 16px;
-  margin-top: 14px;
+  margin-top: 13px;
   justify-content: center;
   align-items: center;
   border-radius: 44px;
