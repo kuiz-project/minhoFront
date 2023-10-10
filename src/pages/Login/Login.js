@@ -30,7 +30,7 @@ const LoginPage = () => {
       const res = await loginPostAPI.post("", submission);
       if (res.status === 200) {
         console.log("로그인 성공");
-        setLoginState(true);
+        setIsLoginState(true);
         navigate("/upload");
       }
     } catch (err) {
