@@ -2,9 +2,12 @@ import styled from "styled-components";
 
 export const UploadWrapper = styled.div`
   width: 100%;
+  height:100%;
   section::-webkit-scrollbar {
     display: none;
   }
+  display:flex;
+  flex-direction:row;
 `;
 
 export const DirTitle = styled.div`
@@ -25,11 +28,10 @@ export const DirName = styled.span`
 `;
 
 export const SideBarWrapper = styled.section`
-  position: fixed;
-  top: 90px;
-  z-index: 998;
   height: 100%;
-  width: 234px;
+  width: 270px;
+  background-color:white;
+  overflow:auto;
 `;
 
 export const ToggleBtn = styled.button``;
@@ -79,99 +81,108 @@ export const DirInner = styled.div`
   flex-direction: column;
 `;
 
+export const Wrapper = styled.section`
+  width: 100%;
+  height:100%;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content:center;
+`;
+
 export const LectureUploadWrapper = styled.section`
-  max-width: 712px;
+  max-width: 608px;
   width: 100%;
-  margin: 0 auto;
-  margin-top: 161px;
   display: flex;
   flex-direction: column;
-  gap: 31px;
+  margin-bottom:150px;
 `;
 
-export const LectureWrapper = styled.div`
-  border-radius: 16px;
+export const LectureDirectoryWrapper = styled.div`
+  display:flex;
+  flex-direction:row;
+  max-width: 608px;
   width: 100%;
-  height: 364px;
+  height: 112px;
   background: var(--Text_White, #fff);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.12);
-  display: flex;
-  gap: 55px;
-  overflow: auto;
-  position: relative;
-  padding: 28px 140px 16px 58px;
-`;
-
-export const UploadName = styled.span`
-  padding-top: 10px;
-  color: #000;
-  font-family: Noto Sans KR_Medium;
-  font-size: 20px;
-`;
-
-export const UploadSearch = styled.span`
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  height: 100%;
-`;
-
-export const UploadTopSearch = styled.span`
-  position: sticky;
-  border-radius: 62px;
-  height: 48px;
-  width: 400px;
-  top: 0;
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  background-color: white;
-  img {
-    position: absolute;
-    padding: 8px 16px;
+  padding: 24px 74px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  margin-bottom:24px;
+  .diruploadtext{
+    margin-top:17px;
+    margin-left:-28px;
+    width:100px;
+    margin-right: 27px;
+    height:15px;
+    color: #000;
+    font-family: Noto Sans KR;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  .diruploadinput{
+    width: 350px;
+height: 48px;
+flex-shrink: 0;
+border-radius: 4px;
+background: #EAEAEA;
+margin-top:8px;
   }
 `;
 
-export const SearchInput = styled.input`
-  height: 100%;
+export const LectureName = styled.div`
+display:flex;
+flex-direction:row;
+  max-width: 608px;
   width: 100%;
-  border-radius: 50px;
-  display: flex;
-  background: var(--Gray_3, #f9f9f9);
-  border: none;
-  outline: none;
-  font-size: 16px;
-  padding-left: 50px;
-  &:focus {
-    border: none;
-    outline: none;
+  height: 112px;
+  background: var(--Text_White, #fff);
+  padding: 24px 74px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  margin-bottom:24px;
+  .lectureuploadtext{
+    margin-top:17px;
+    margin-left:8.5px;
+    width:90px;
+    margin-right: 1px;
+    height:15px;
+    color: #000;
+  font-family: Noto Sans KR;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
   }
-`;
-
-export const SearchList = styled.span`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-`;
-
-export const SearchItem = styled.button`
-  height: 45px;
-  padding: 16px 24px;
-  border-radius: 8px;
-  border: 1px solid #e1e1e1;
-  color: var(--Text_Gray, #a3a3a3);
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  align-self: flex-start;
+  .lectureuploadinput{
+    width: 350px;
+height: 48px;
+flex-shrink: 0;
+border-radius: 4px;
+background: #EAEAEA;
+margin-top:8px;
+  }
 `;
 
 export const FileUploadWrapper = styled.div`
-  max-width: 712px;
+  display:flex;
+  flex-direction:row;
+  .fileuploadtext{
+    margin-top:17px;
+    margin-left:-10px;
+    width:90px;
+    margin-right: 27px;
+    height:15px;
+    color: #000;
+    font-family: Noto Sans KR;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  max-width: 608px;
   width: 100%;
-  height: 84px;
-  border-radius: 16px;
-  align-items: center;
+  height: 112px;
   background: var(--Text_White, #fff);
   padding: 24px 74px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
@@ -179,11 +190,12 @@ export const FileUploadWrapper = styled.div`
 
 export const UploadBox = styled.div`
   border-radius: 40px;
-  border: 1px solid #312e81;
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+  border: 1px solid #E1E1E1;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.10);
   display: flex;
-  width: 100%;
-  padding: 8px 16px;
+  width: 404px;
+  height:42px;
+  margin-top:13px;
   justify-content: center;
   align-items: center;
   position: relative;
@@ -191,11 +203,15 @@ export const UploadBox = styled.div`
     color: var(--Main_light, #3730a3);
     font-family: Noto Sans KR_Bold;
     font-size: 16px;
+    display: none;
   }
   .customFileUpload {
-    color: var(--Main_light, #3730a3);
-    font-family: Noto Sans KR_Bold;
-    font-size: 16px;
+    color: var(--Main_light, #3730A3);
+    font-family: Noto Sans KR;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px; /* 152.941% */
     cursor: pointer;
   }
 `;
@@ -205,10 +221,8 @@ export const UploadCancelBtn = styled.button`
     width: 16px;
     height: 19px;
     position: absolute;
-    top: 7px;
+    top: 12px;
     right: 16px;
     z-index: 5;
   }
 `;
-
-export const ViewWrapper = styled.div``;
