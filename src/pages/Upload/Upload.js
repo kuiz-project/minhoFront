@@ -5,61 +5,43 @@ import open from "../../assets/images/dir_open.svg";
 import add from "../../assets/images/add.svg";
 import trash from "../../assets/images/trash.svg";
 import search from "../../assets/images/search.svg";
+import edit from "../../assets/images/edit.svg";
 import * as S from "./styles/index";
-import FileItem from "../../components/FileItem/FileItem";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import { currentFileState } from "../../recoil/atom";
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  currentFileState,
+  folderState,
+  updatedDirectory,
+  directoryState,
+} from "../../recoil/atom";
+import { createfolderPostAPI, myfolderAPI } from "./../../apis/API";
 
 const Upload = () => {
   const [pdfFile, setpdfFile] = useState(null);
-
   const [currentFile, setCurrentFile] = useRecoilState(currentFileState);
+
+  const folders = useRecoilValue(updatedDirectory);
+  const [folderData, setFolderData] = useRecoilState(directoryState);
+
   const navigate = useNavigate();
 
   const fileType = ["application/pdf"];
 
-  // directory 배열
-  const initialDirectories = [
-    {
-      id: "1",
-      name: "디렉토리명",
-      isSelected: false,
-      isEdit: false,
-      details: [
-        { id: 1, name: "PDF 파일명 1", isSelected: false, isEdit: false },
-        { id: 2, name: "PDF 파일명 2", isSelected: false, isEdit: false },
-        { id: 3, name: "PDF 파일명 3", isSelected: false, isEdit: false },
-        { id: 4, name: "PDF 파일명 4", isSelected: false, isEdit: false },
-        { id: 5, name: "PDF 파일명 5", isSelected: false, isEdit: false },
-      ],
-    },
-    {
-      id: "2",
-      name: "디렉토리명",
-      isSelected: false,
-      isEdit: false,
-      details: [
-        { id: 1, name: "PDF 파일명 1", isSelected: false, isEdit: false },
-        { id: 2, name: "PDF 파일명 2", isSelected: false, isEdit: false },
-        { id: 3, name: "PDF 파일명 3", isSelected: false, isEdit: false },
-        { id: 4, name: "PDF 파일명 4", isSelected: false, isEdit: false },
-        { id: 5, name: "PDF 파일명 5", isSelected: false, isEdit: false },
-      ],
-    },
-  ];
-  const [directories, setDirectories] = useState(initialDirectories);
   const [searchValue, setSearchValue] = useState("");
 
+  useEffect(() => {
+    setFolderData(folders);
+  }, [folders, setFolderData]);
   // directory 클릭
   const handleDirectory = (dirId) => {
-    const newDirectories = directories.map((directory) => {
+    const newDirectories = folders.map((directory) => {
       if (directory.id === dirId) {
         return { ...directory, isSelected: !directory.isSelected };
       }
       return directory;
     });
-    setDirectories(newDirectories);
+    setFolderData(newDirectories);
   };
 
   // 검색어
@@ -67,8 +49,8 @@ const Upload = () => {
     setSearchValue(e.target.value);
   };
 
+  // 파일 선택
   const handleChange = (e) => {
-    console.log("pdf");
     let selectedFile = e.target.files[0];
     if (selectedFile) {
       if (selectedFile && fileType.includes(selectedFile.type)) {
@@ -77,7 +59,6 @@ const Upload = () => {
         reader.onload = (e) => {
           setpdfFile(e.target.result);
           setCurrentFile(e.target.result);
-          console.log("pdf");
           navigate("/pdf");
         };
       } else {
@@ -88,6 +69,39 @@ const Upload = () => {
     }
   };
 
+  // 디렉토리 추가
+  const handleDirectoryAdd = () => {
+    try {
+      const res = createfolderPostAPI.post("");
+      console.log(res);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  /* 파일 수정 텍스트 */
+  const [fileEditText, setFileEditText] = useState();
+
+  // 파일명 수정
+  const EditFileName = (pdfId) => {};
+  // (파일 클릭) 업로드 할 때는 전체 디렉토리에서 하나만 클릭 가능
+  const handleFileClick = (dirId, fileId) => {
+    // const newDirectories = directories.map((dir) => {
+    //   const newDetails = dir.details.map((file) => {
+    //     if (dir.id === dirId && file.id === fileId) {
+    //       return { ...file, isSelected: true };
+    //     } else {
+    //       return { ...file, isSelected: false, isEdit: false };
+    //     }
+    //   });
+    //   return { ...dir, details: newDetails };
+    // });
+    // setDirectories(newDirectories);
+  };
+
+  /* 파일 수정 */
+  console.log(folders);
+
   return (
     <S.UploadWrapper>
       <S.SideBarWrapper>
@@ -97,13 +111,13 @@ const Upload = () => {
             <img src={trash} alt="삭제 버튼" />
           </S.DeleteBtn>
           <S.AddBtn>
-            <img src={add} alt="추가 버튼" />
+            <img src={add} alt="추가 버튼" onClick={handleDirectoryAdd} />
           </S.AddBtn>
         </S.SideBarHeader>
         <S.SectionListBox>
-          {directories.map((directory, idx) => (
-            <S.DirBox key={directory.id}>
-              <S.DirTitle isSelected={directories[idx].isSelected}>
+          {folders.map((directory, idx) => (
+            <S.DirBox key={directory.folder_id}>
+              <S.DirTitle isSelected={directory.isSelected}>
                 <S.ToggleBtn onClick={() => handleDirectory(directory.id)}>
                   {directory.isSelected ? (
                     <img src={open} alt="열기 이미지" />
@@ -111,20 +125,39 @@ const Upload = () => {
                     <img src={close} alt="닫기 이미지" />
                   )}
                 </S.ToggleBtn>
-                <S.DirName isSelected={directories[idx].isSelected}>
-                  {directory.name}
+                <S.DirName isSelected={directory.isSelected}>
+                  {directory.folder_name}
                 </S.DirName>
               </S.DirTitle>
               {directory.isSelected && (
                 <S.DirInner>
-                  {directory.details.map((file) => (
-                    <FileItem
-                      key={file.id}
-                      directories={directories}
-                      setDirectories={setDirectories}
-                      directory={directory}
-                      file={file}
-                    ></FileItem>
+                  {directory.pdfDtos?.map((pdf) => (
+                    <S.FileItemWrapper
+                      key={pdf.pdf_id}
+                      onClick={() => handleFileClick(directory.id, pdf.id)}
+                      isSelected={pdf.isSelected}
+                    >
+                      {pdf.isEdit ? (
+                        <S.FileInput
+                          value={fileEditText}
+                          onChange={(e) => setFileEditText(e.target.value)}
+                        />
+                      ) : (
+                        <S.FileName>{pdf.name}</S.FileName>
+                      )}
+                      <S.FileEditBtn
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          EditFileName(directory.id, pdf.id);
+                        }}
+                      >
+                        {pdf.isEdit ? (
+                          <span>확인</span>
+                        ) : (
+                          <img src={edit} alt="수정 이미지" />
+                        )}
+                      </S.FileEditBtn>
+                    </S.FileItemWrapper>
                   ))}
                 </S.DirInner>
               )}
