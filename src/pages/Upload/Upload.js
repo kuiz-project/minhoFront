@@ -9,24 +9,31 @@ import edit from "../../assets/images/edit.svg";
 import * as S from "./styles/index";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
-import {
-  currentFileState,
-  updatedDirectory,
-  directoryState,
-} from "../../recoil/atom";
+import { currentFileState, directoryState } from "../../recoil/atom";
 import { createfolderPostAPI, myfolderAPI } from "./../../apis/API";
 
 const Upload = () => {
   const [pdfFile, setpdfFile] = useState(null);
   const [currentFile, setCurrentFile] = useRecoilState(currentFileState);
-
   const [directories, setDirectories] = useRecoilState(directoryState); // 폴더 데이터 가져오기
   const navigate = useNavigate();
-
   const fileType = ["application/pdf"];
-
   const [searchValue, setSearchValue] = useState("");
 
+  const fetchInitialData = async () => {
+    const res = await myfolderAPI.get();
+    try {
+      if (res.status === 200) {
+        const updatedDirectories = res.data.folderDtos.map((directory) => ({
+          ...directory,
+          isSelected: false,
+        }));
+        setDirectories(updatedDirectories);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
   const fetchData = async () => {
     const res = await myfolderAPI.get();
     try {
@@ -37,16 +44,17 @@ const Upload = () => {
       console.log(e);
     }
   };
+
   // 초기 디렉토리
   useEffect(() => {
     // 초기 폴더 데이터 로드
-    fetchData();
+    fetchInitialData();
   }, []);
 
   // directory 클릭
-  const handleDirectory = (dirId) => {
-    const newDirectories = folders.map((directory) => {
-      if (directory.id === dirId) {
+  const handleDirectoryClick = (dirId) => {
+    const newDirectories = directories.map((directory) => {
+      if (directory.folder_id === dirId) {
         return { ...directory, isSelected: !directory.isSelected };
       }
       return directory;
@@ -124,15 +132,16 @@ const Upload = () => {
         </S.SideBarHeader>
         <S.SectionListBox>
           {directories.map((directory, idx) => (
-            <S.DirBox key={directory.folder_id}>
+            <S.DirBox
+              key={directory.folder_id}
+              onClick={() => handleDirectoryClick(directory.folder_id)}
+            >
               <S.DirTitle isSelected={directory.isSelected}>
-                <S.ToggleBtn>
-                  {directory.isSelected ? (
-                    <img src={open} alt="열기 이미지" />
-                  ) : (
-                    <img src={close} alt="닫기 이미지" />
-                  )}
-                </S.ToggleBtn>
+                {directory.isSelected ? (
+                  <img src={open} alt="열기 이미지" />
+                ) : (
+                  <img src={close} alt="닫기 이미지" />
+                )}
                 <S.DirName isSelected={directory.isSelected}>
                   {directory.folder_name}
                 </S.DirName>

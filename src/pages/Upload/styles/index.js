@@ -32,8 +32,6 @@ export const SideBarWrapper = styled.section`
   width: 234px;
 `;
 
-export const ToggleBtn = styled.button``;
-
 export const SideBarHeader = styled.section`
   display: flex;
   gap: 15px;
@@ -53,7 +51,7 @@ export const SectionListBox = styled.section`
   gap: 12px;
 `;
 
-export const DirBox = styled.div`
+export const DirBox = styled.button`
   display: flex;
   flex-direction: column;
   align-items: center;
