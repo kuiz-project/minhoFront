@@ -32,30 +32,20 @@ export const TestSubjective = styled.div`
   height: 100%;
 `;
 
-export const SmallTitle = styled.div`
-  width: 50px;
-  height: 16px;
-  display: flex;
-  flex-direction: row;
-  background-color: red;
-`;
-
 export const TestTitleSmallTitle = styled.div`
   width: 60px;
   padding-left: 5.5px;
   height: 16px;
   border-radius: 4px;
-  background: #fff;
   margin-left: 48px;
   color: #2f3042;
-  leading-trim: both;
-  text-edge: cap;
   font-family: Noto Sans KR;
   font-size: 10px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   background-color: white;
+  margin-top: 10px;
 `;
 
 export const TestTitleMain = styled.div`
@@ -64,7 +54,7 @@ export const TestTitleMain = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  margin-top: 8px;
+  margin-top: 1px;
   margin-left: 48px;
 `;
 
@@ -74,6 +64,7 @@ export const TestTitle = styled.div`
   border-radius: 8px 8px 0px 0px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
   margin-bottom: 4px;
+  padding-top: 0.1px;
 `;
 
 export const TestProblem = styled.div`
