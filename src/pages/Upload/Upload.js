@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
   currentFileState,
-  folderState,
   updatedDirectory,
   directoryState,
 } from "../../recoil/atom";
@@ -21,18 +20,29 @@ const Upload = () => {
   const [pdfFile, setpdfFile] = useState(null);
   const [currentFile, setCurrentFile] = useRecoilState(currentFileState);
 
-  const folders = useRecoilValue(updatedDirectory);
-  const [folderData, setFolderData] = useRecoilState(directoryState);
-
+  const [directories, setDirectories] = useRecoilState(directoryState); // 폴더 데이터 가져오기
   const navigate = useNavigate();
 
   const fileType = ["application/pdf"];
 
   const [searchValue, setSearchValue] = useState("");
 
+  const fetchData = async () => {
+    const res = await myfolderAPI.get();
+    try {
+      if (res.status === 200) {
+        setDirectories(res.data.folderDtos);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  // 초기 디렉토리
   useEffect(() => {
-    setFolderData(folders);
-  }, [folders, setFolderData]);
+    // 초기 폴더 데이터 로드
+    fetchData();
+  }, []);
+
   // directory 클릭
   const handleDirectory = (dirId) => {
     const newDirectories = folders.map((directory) => {
@@ -41,7 +51,19 @@ const Upload = () => {
       }
       return directory;
     });
-    setFolderData(newDirectories);
+    setDirectories(newDirectories);
+  };
+
+  // 폴더 추가
+  const handleDirectoryAdd = async () => {
+    try {
+      const res = await createfolderPostAPI.post("");
+      if (res.status === 200) {
+        fetchData();
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   // 검색어
@@ -69,16 +91,6 @@ const Upload = () => {
     }
   };
 
-  // 디렉토리 추가
-  const handleDirectoryAdd = () => {
-    try {
-      const res = createfolderPostAPI.post("");
-      console.log(res);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
   /* 파일 수정 텍스트 */
   const [fileEditText, setFileEditText] = useState();
 
@@ -98,10 +110,6 @@ const Upload = () => {
     // });
     // setDirectories(newDirectories);
   };
-
-  /* 파일 수정 */
-  console.log(folders);
-
   return (
     <S.UploadWrapper>
       <S.SideBarWrapper>
@@ -115,10 +123,10 @@ const Upload = () => {
           </S.AddBtn>
         </S.SideBarHeader>
         <S.SectionListBox>
-          {folders.map((directory, idx) => (
+          {directories.map((directory, idx) => (
             <S.DirBox key={directory.folder_id}>
               <S.DirTitle isSelected={directory.isSelected}>
-                <S.ToggleBtn onClick={() => handleDirectory(directory.id)}>
+                <S.ToggleBtn>
                   {directory.isSelected ? (
                     <img src={open} alt="열기 이미지" />
                   ) : (
