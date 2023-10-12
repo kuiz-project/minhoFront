@@ -30,6 +30,38 @@ const Upload = () => {
   /* 파일 수정 텍스트 */
   const [fileEditText, setFileEditText] = useState();
 
+  const subjects = [
+    {
+      subjectName: "데이터베이스",
+      subjectId: 1,
+    },
+    {
+      subjectName: "운영체제",
+      subjectId: 2,
+    },
+    {
+      subjectName: "컴퓨터네트워크",
+      subjectId: 3,
+    },
+    {
+      subjectName: "컴퓨터회로",
+      subjectId: 4,
+    },
+
+    {
+      subjectName: "컴퓨터구조",
+      subjectId: 5,
+    },
+    {
+      subjectName: "시스템 프로그래밍",
+      subjectId: 6,
+    },
+    {
+      subjectName: "자바 프로그래밍",
+      subjectId: 7,
+    },
+  ];
+
   const fetchInitialData = async () => {
     const res = await myfolderAPI.get();
     try {
@@ -105,11 +137,10 @@ const Upload = () => {
   // directory 수정
   // 중복일 때 : input 해제
   // default 폴더는 더블클릭 금지
-  const handleDirectoryEdit = async (e, dir) => {
-    const { folder_name, folder_id } = dir;
+  const handleDirectoryEdit = async (e, dirId) => {
     const submission = {
       folder_name: directoryEditText,
-      folder_id,
+      folder_id: dirId,
     };
     // 엔터로 수정 요청
     if (e.keyCode === 13) {
@@ -217,7 +248,7 @@ const Upload = () => {
                       handleDirectoryInput(e);
                     }}
                     onKeyDown={(e) => {
-                      handleDirectoryEdit(e, directory);
+                      handleDirectoryEdit(e, directory.folder_id);
                     }}
                   />
                 ) : (
@@ -276,9 +307,9 @@ const Upload = () => {
               />
             </S.UploadTopSearch>
             <S.SearchList>
-              <S.SearchItem>마지막</S.SearchItem>
-              <S.SearchItem>마지막123213</S.SearchItem>
-              <S.SearchItem>마지막</S.SearchItem>
+              {subjects.map((subject) => (
+                <S.SearchItem>{subject.subjectName}</S.SearchItem>
+              ))}
             </S.SearchList>
           </S.UploadSearch>
         </S.LectureWrapper>

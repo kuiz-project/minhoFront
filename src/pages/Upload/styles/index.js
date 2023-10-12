@@ -117,9 +117,14 @@ export const LectureWrapper = styled.div`
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.12);
   display: flex;
   gap: 55px;
-  overflow: auto;
   position: relative;
   padding: 28px 140px 16px 58px;
+  overflow: scroll;
+  // webkit 렌더링 엔진에서 스크롤 바 숨기기
+  &::-webkit-scrollbar {
+    /* This is the magic bit for WebKit */
+    display: none;
+  }
 `;
 
 export const UploadName = styled.span`
@@ -137,7 +142,6 @@ export const UploadSearch = styled.span`
 `;
 
 export const UploadTopSearch = styled.span`
-  position: sticky;
   border-radius: 62px;
   height: 48px;
   width: 400px;
