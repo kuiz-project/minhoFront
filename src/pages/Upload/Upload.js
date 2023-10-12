@@ -10,7 +10,11 @@ import * as S from "./styles/index";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { currentFileState, directoryState } from "../../recoil/atom";
-import { createfolderPostAPI, myfolderAPI } from "./../../apis/API";
+import {
+  createfolderPostAPI,
+  myfolderAPI,
+  updatefoldernameAPI,
+} from "./../../apis/API";
 
 const Upload = () => {
   const [pdfFile, setpdfFile] = useState(null);
@@ -20,6 +24,11 @@ const Upload = () => {
   const navigate = useNavigate();
   const fileType = ["application/pdf"];
   const [searchValue, setSearchValue] = useState("");
+  /* 디렉토리 수정 텍스트 */
+  const [directoryEditText, setDirectoryEditText] = useState("");
+
+  /* 파일 수정 텍스트 */
+  const [fileEditText, setFileEditText] = useState();
 
   const fetchInitialData = async () => {
     const res = await myfolderAPI.get();
@@ -28,6 +37,7 @@ const Upload = () => {
         const updatedDirectories = res.data.folderDtos.map((directory) => ({
           ...directory,
           isSelected: false,
+          isEdit: false,
         }));
         setDirectories(updatedDirectories);
       }
@@ -52,11 +62,21 @@ const Upload = () => {
     fetchInitialData();
   }, []);
 
+  // 폴더 추가
+  const handleDirectoryAdd = async () => {
+    try {
+      const res = await createfolderPostAPI.post("");
+      if (res.status === 200) {
+        fetchData();
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   // directory 클릭
   const handleDirectoryClick = (dirId) => {
-    if (isEditMode) {
-      console.log("더블클릭 감지");
-    } else {
+    if (!isEditMode) {
       const newDirectories = directories.map((directory) => {
         if (directory.folder_id === dirId) {
           return { ...directory, isSelected: !directory.isSelected };
@@ -68,16 +88,48 @@ const Upload = () => {
     }
   };
 
-  // 폴더 추가
-  const handleDirectoryAdd = async () => {
-    try {
-      const res = await createfolderPostAPI.post("");
-      if (res.status === 200) {
-        fetchData();
-      }
-    } catch (e) {
-      console.log(e);
+  // 더블클릭하여 directory 수정 모드
+  const handleDirectoryDoubleClick = (dirId) => {
+    if (isEditMode && dirId !== 1) {
+      const newDirectories = directories.map((directory) => {
+        if (directory.folder_id === dirId) {
+          return { ...directory, isEdit: true };
+        } else {
+          return { ...directory, isEdit: false };
+        }
+      });
+      setDirectories(newDirectories);
     }
+  };
+
+  // directory 수정
+  // 중복일 때 : input 해제
+  // default 폴더는 더블클릭 금지
+  const handleDirectoryEdit = async (e, dir) => {
+    const { folder_name, folder_id } = dir;
+    const submission = {
+      folder_name: directoryEditText,
+      folder_id,
+    };
+    // 엔터로 수정 요청
+    if (e.keyCode === 13) {
+      try {
+        const res = await updatefoldernameAPI.patch("", submission);
+        if (res.status === 200) {
+          fetchData();
+          setDirectoryEditText("");
+        }
+      } catch (e) {
+        // 폴더명 중복
+        if (e.response.data.error.includes("중복")) {
+          fetchData();
+        }
+      }
+    }
+  };
+
+  const handleDirectoryInput = (e) => {
+    setDirectoryEditText(e.target.value);
   };
 
   // 검색어
@@ -104,9 +156,6 @@ const Upload = () => {
       console.log("please select");
     }
   };
-
-  /* 파일 수정 텍스트 */
-  const [fileEditText, setFileEditText] = useState();
 
   // 파일명 수정
   const EditFileName = (pdfId) => {};
@@ -150,7 +199,9 @@ const Upload = () => {
             <S.DirBox
               key={directory.folder_id}
               onClick={() => handleDirectoryClick(directory.folder_id)}
-              onDoubleClick={() => handleDirectoryClick(directory.folder_id)}
+              onDoubleClick={() => {
+                handleDirectoryDoubleClick(directory.folder_id);
+              }}
             >
               <S.DirTitle isSelected={directory.isSelected}>
                 {directory.isSelected ? (
@@ -158,9 +209,22 @@ const Upload = () => {
                 ) : (
                   <img src={close} alt="닫기 이미지" />
                 )}
-                <S.DirName isSelected={directory.isSelected}>
-                  {directory.folder_name}
-                </S.DirName>
+                {isEditMode && directory.isEdit ? (
+                  <S.DirInput
+                    isSelected={directory.isSelected}
+                    defaultValue={directory.folder_name}
+                    onChange={(e) => {
+                      handleDirectoryInput(e);
+                    }}
+                    onKeyDown={(e) => {
+                      handleDirectoryEdit(e, directory);
+                    }}
+                  />
+                ) : (
+                  <S.DirName isSelected={directory.isSelected}>
+                    {directory.folder_name}
+                  </S.DirName>
+                )}
               </S.DirTitle>
               {directory.isSelected && (
                 <S.DirInner>

@@ -24,6 +24,12 @@ export const DirName = styled.span`
   font-family: "Noto Sans KR_Medium";
 `;
 
+export const DirInput = styled.input`
+  color: ${({ isSelected }) => (isSelected ? "#fff" : "#424242")};
+  font-size: 14px;
+  font-family: "Noto Sans KR_Medium";
+`;
+
 export const SideBarWrapper = styled.section`
   position: fixed;
   top: 90px;
