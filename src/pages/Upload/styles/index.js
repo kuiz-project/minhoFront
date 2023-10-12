@@ -229,7 +229,7 @@ export const UploadCancelBtn = styled.button`
     width: 16px;
     height: 19px;
     position: absolute;
-    top: 7px;
+    top: 12px;
     right: 16px;
     z-index: 5;
   }
