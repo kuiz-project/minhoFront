@@ -16,6 +16,7 @@ const Upload = () => {
   const [pdfFile, setpdfFile] = useState(null);
   const [currentFile, setCurrentFile] = useRecoilState(currentFileState);
   const [directories, setDirectories] = useRecoilState(directoryState); // 폴더 데이터 가져오기
+  const [isEditMode, setIsEditMode] = useState(false);
   const navigate = useNavigate();
   const fileType = ["application/pdf"];
   const [searchValue, setSearchValue] = useState("");
@@ -53,13 +54,18 @@ const Upload = () => {
 
   // directory 클릭
   const handleDirectoryClick = (dirId) => {
-    const newDirectories = directories.map((directory) => {
-      if (directory.folder_id === dirId) {
-        return { ...directory, isSelected: !directory.isSelected };
-      }
-      return directory;
-    });
-    setDirectories(newDirectories);
+    if (isEditMode) {
+      console.log("더블클릭 감지");
+    } else {
+      const newDirectories = directories.map((directory) => {
+        if (directory.folder_id === dirId) {
+          return { ...directory, isSelected: !directory.isSelected };
+        } else {
+          return { ...directory, isSelected: false };
+        }
+      });
+      setDirectories(newDirectories);
+    }
   };
 
   // 폴더 추가
@@ -122,19 +128,29 @@ const Upload = () => {
     <S.UploadWrapper>
       <S.SideBarWrapper>
         <S.SideBarHeader>
-          <S.EditBtn>편집</S.EditBtn>
-          <S.DeleteBtn>
-            <img src={trash} alt="삭제 버튼" />
-          </S.DeleteBtn>
+          {isEditMode ? (
+            <>
+              <S.CompleteBtn onClick={() => setIsEditMode(false)}>
+                완료
+              </S.CompleteBtn>
+              <S.DeleteBtn>
+                <img src={trash} alt="삭제 버튼" />
+              </S.DeleteBtn>
+            </>
+          ) : (
+            <S.EditBtn onClick={() => setIsEditMode(true)}>편집</S.EditBtn>
+          )}
+
           <S.AddBtn>
             <img src={add} alt="추가 버튼" onClick={handleDirectoryAdd} />
           </S.AddBtn>
         </S.SideBarHeader>
         <S.SectionListBox>
-          {directories.map((directory, idx) => (
+          {directories?.map((directory, idx) => (
             <S.DirBox
               key={directory.folder_id}
               onClick={() => handleDirectoryClick(directory.folder_id)}
+              onDoubleClick={() => handleDirectoryClick(directory.folder_id)}
             >
               <S.DirTitle isSelected={directory.isSelected}>
                 {directory.isSelected ? (

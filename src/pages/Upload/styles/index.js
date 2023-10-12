@@ -60,14 +60,30 @@ export const DirBox = styled.button`
 
 export const EditBtn = styled.button`
   color: #555;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 350;
   z-index: 10;
 `;
 
-export const DeleteBtn = styled.button``;
+export const CompleteBtn = styled.button`
+  color: #555;
+  font-size: 16px;
+  font-weight: 350;
+  z-index: 10;
+`;
+export const DeleteBtn = styled.button`
+  color: #555;
+  font-size: 16px;
+  font-weight: 350;
+  z-index: 10;
+`;
 
-export const AddBtn = styled.button``;
+export const AddBtn = styled.button`
+  color: #555;
+  font-size: 16px;
+  font-weight: 350;
+  z-index: 10;
+`;
 
 export const DirInner = styled.div`
   display: flex;
