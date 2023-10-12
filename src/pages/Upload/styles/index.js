@@ -2,12 +2,9 @@ import styled from "styled-components";
 
 export const UploadWrapper = styled.div`
   width: 100%;
-  height:100%;
   section::-webkit-scrollbar {
     display: none;
   }
-  display:flex;
-  flex-direction:row;
 `;
 
 export const DirTitle = styled.div`
@@ -27,14 +24,19 @@ export const DirName = styled.span`
   font-family: "Noto Sans KR_Medium";
 `;
 
-export const SideBarWrapper = styled.section`
-  height: 100%;
-  width: 270px;
-  background-color:white;
-  overflow:auto;
+export const DirInput = styled.input`
+  color: ${({ isSelected }) => (isSelected ? "#fff" : "#424242")};
+  font-size: 14px;
+  font-family: "Noto Sans KR_Medium";
 `;
 
-export const ToggleBtn = styled.button``;
+export const SideBarWrapper = styled.section`
+  position: fixed;
+  top: 100px;
+  z-index: 998;
+  height: 100%;
+  width: 234px;
+`;
 
 export const SideBarHeader = styled.section`
   display: flex;
@@ -55,7 +57,7 @@ export const SectionListBox = styled.section`
   gap: 12px;
 `;
 
-export const DirBox = styled.div`
+export const DirBox = styled.button`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -64,14 +66,30 @@ export const DirBox = styled.div`
 
 export const EditBtn = styled.button`
   color: #555;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 350;
   z-index: 10;
 `;
 
-export const DeleteBtn = styled.button``;
+export const CompleteBtn = styled.button`
+  color: #555;
+  font-size: 16px;
+  font-weight: 350;
+  z-index: 10;
+`;
+export const DeleteBtn = styled.button`
+  color: #555;
+  font-size: 16px;
+  font-weight: 350;
+  z-index: 10;
+`;
 
-export const AddBtn = styled.button``;
+export const AddBtn = styled.button`
+  color: #555;
+  font-size: 16px;
+  font-weight: 350;
+  z-index: 10;
+`;
 
 export const DirInner = styled.div`
   display: flex;
@@ -81,108 +99,103 @@ export const DirInner = styled.div`
   flex-direction: column;
 `;
 
-export const Wrapper = styled.section`
-  width: 100%;
-  height:100%;
-  display: flex;
-  flex-direction: column;
-  align-items:center;
-  justify-content:center;
-`;
-
 export const LectureUploadWrapper = styled.section`
-  max-width: 608px;
+  max-width: 712px;
   width: 100%;
+  margin: 0 auto;
+  margin-top: 161px;
   display: flex;
   flex-direction: column;
-  margin-bottom:150px;
+  gap: 31px;
 `;
 
-export const LectureDirectoryWrapper = styled.div`
-  display:flex;
-  flex-direction:row;
-  max-width: 608px;
+export const LectureWrapper = styled.div`
+  border-radius: 16px;
   width: 100%;
-  height: 112px;
+  height: 364px;
   background: var(--Text_White, #fff);
-  padding: 24px 74px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
-  margin-bottom:24px;
-  .diruploadtext{
-    margin-top:17px;
-    margin-left:-28px;
-    width:100px;
-    margin-right: 27px;
-    height:15px;
-    color: #000;
-    font-family: Noto Sans KR;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
-  .diruploadinput{
-    width: 350px;
-height: 48px;
-flex-shrink: 0;
-border-radius: 4px;
-background: #EAEAEA;
-margin-top:8px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.12);
+  display: flex;
+  gap: 55px;
+  position: relative;
+  padding: 28px 140px 16px 58px;
+  overflow: scroll;
+  // webkit 렌더링 엔진에서 스크롤 바 숨기기
+  &::-webkit-scrollbar {
+    /* This is the magic bit for WebKit */
+    display: none;
   }
 `;
 
-export const LectureName = styled.div`
-display:flex;
-flex-direction:row;
-  max-width: 608px;
-  width: 100%;
-  height: 112px;
-  background: var(--Text_White, #fff);
-  padding: 24px 74px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
-  margin-bottom:24px;
-  .lectureuploadtext{
-    margin-top:17px;
-    margin-left:8.5px;
-    width:90px;
-    margin-right: 1px;
-    height:15px;
-    color: #000;
-  font-family: Noto Sans KR;
+export const UploadName = styled.span`
+  padding-top: 10px;
+  color: #000;
+  font-family: Noto Sans KR_Medium;
   font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
+`;
+
+export const UploadSearch = styled.span`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 100%;
+`;
+
+export const UploadTopSearch = styled.span`
+  border-radius: 62px;
+  height: 48px;
+  width: 400px;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  img {
+    position: absolute;
+    padding: 8px 16px;
   }
-  .lectureuploadinput{
-    width: 350px;
-height: 48px;
-flex-shrink: 0;
-border-radius: 4px;
-background: #EAEAEA;
-margin-top:8px;
+`;
+
+export const SearchInput = styled.input`
+  height: 100%;
+  width: 100%;
+  border-radius: 50px;
+  display: flex;
+  background: var(--Gray_3, #f9f9f9);
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding-left: 50px;
+  &:focus {
+    border: none;
+    outline: none;
   }
+`;
+
+export const SearchList = styled.span`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const SearchItem = styled.button`
+  height: 45px;
+  padding: 16px 24px;
+  border-radius: 8px;
+  border: 1px solid #e1e1e1;
+  color: var(--Text_Gray, #a3a3a3);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
 `;
 
 export const FileUploadWrapper = styled.div`
-  display:flex;
-  flex-direction:row;
-  .fileuploadtext{
-    margin-top:17px;
-    margin-left:-10px;
-    width:90px;
-    margin-right: 27px;
-    height:15px;
-    color: #000;
-    font-family: Noto Sans KR;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
-  max-width: 608px;
+  max-width: 712px;
   width: 100%;
-  height: 112px;
+  height: 84px;
+  border-radius: 16px;
+  align-items: center;
   background: var(--Text_White, #fff);
   padding: 24px 74px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
@@ -190,31 +203,23 @@ export const FileUploadWrapper = styled.div`
 
 export const UploadBox = styled.div`
   border-radius: 40px;
-  border: 1px solid #E1E1E1;
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.10);
+  border: 1px solid #312e81;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
   display: flex;
-  width: 404px;
-  height:42px;
-  margin-top:13px;
+  width: 100%;
+  padding: 8px 16px;
   justify-content: center;
   align-items: center;
   position: relative;
   .hiddenInput {
-    color: var(--Main_light, #3730A3);
-    font-family: Noto Sans KR;
-    font-size: 17px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 26px; /* 152.941% */
-    display: none;
+    color: var(--Main_light, #3730a3);
+    font-family: Noto Sans KR_Bold;
+    font-size: 16px;
   }
   .customFileUpload {
-    color: var(--Main_light, #3730A3);
-    font-family: Noto Sans KR;
-    font-size: 17px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 26px; /* 152.941% */
+    color: var(--Main_light, #3730a3);
+    font-family: Noto Sans KR_Bold;
+    font-size: 16px;
     cursor: pointer;
   }
 `;
@@ -229,20 +234,37 @@ export const UploadCancelBtn = styled.button`
     z-index: 5;
   }
 `;
-export const footer = styled.div`
-display:flex;
-flex-direction:row;
-align-items:center;
-justify-content:flex-end;
-padding-right:64px;
-  width:100%;
-  height:92px;
-  border-top: 1px solid #E1E1E1;
-background: #FFF;
 
-/* header */
-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
-  position:fixed;
-  bottom:0;
-  margin-left:-230px;
+export const FileInput = styled.input`
+  color: #424242;
+  width: 85%;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0;
 `;
+
+export const FileItemWrapper = styled.button`
+  padding: 10px 10px 10px 34px;
+  height: 32px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 6px;
+  background: ${({ isSelected }) => (isSelected ? `#e3e6f2` : `#fff`)};
+`;
+
+export const FileName = styled.span`
+  color: #424242;
+  font-size: 14px;
+`;
+
+export const FileEditBtn = styled.button`
+  span {
+    font-size: 13px;
+  }
+`;
+
+export const ViewWrapper = styled.div``;

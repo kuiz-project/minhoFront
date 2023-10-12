@@ -125,7 +125,9 @@ const TestList = () => {
                       );
                     })}
                   </S.TestProblem>
-                  {submitted && !isCorrect && <S.IncorrectAnswerNotice />}
+                  {submitted && !isCorrect && (
+                    <S.IncorrectAnswerNotice>sdf</S.IncorrectAnswerNotice>
+                  )}
                 </S.TestMultipleChoice>
               );
             } else if (question.type === "subjective") {
@@ -144,7 +146,11 @@ const TestList = () => {
                       onBlur={(e) => handleSubjectiveBlur(index, e)}
                     />
                   </S.TestProblem_2>
-                  {submitted && !isCorrect && <S.IncorrectAnswerNotice />}
+                  {submitted && !isCorrect && (
+                    <S.IncorrectAnswerNotice>
+                      sdfhtdtdhgdhgfdhgfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
+                    </S.IncorrectAnswerNotice>
+                  )}
                 </S.TestSubjective>
               );
             }

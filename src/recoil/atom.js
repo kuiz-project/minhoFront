@@ -5,12 +5,13 @@ export const LoginState = atom({
   default: false,
 });
 
-export const currentPdfUrl = atom({
-  key: "currentPdfUrl",
+export const currentFileState = atom({
+  key: "currentFileState",
   default: "",
 });
 
-export const currentFile = atom({
-  key: "currentFile",
-  default: "",
+// 디렉토리 상황
+export const directoryState = atom({
+  key: "directoryState",
+  default: [],
 });

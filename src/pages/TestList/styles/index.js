@@ -23,13 +23,11 @@ export const TestList = styled.div`
 export const TestMultipleChoice = styled.div`
   margin-top: 16px;
   width: 100%;
-  height: 280px;
 `;
 
 export const TestSubjective = styled.div`
   margin-top: 16px;
   width: 100%;
-  height: 280px;
 `;
 
 export const TestTitleSmallTitle = styled.div`
@@ -238,6 +236,13 @@ export const SubmitButton = styled.button`
 export const IncorrectAnswerNotice = styled.div`
   height: 100px;
   width: 100%;
-  background-color: red;
-  display: flex;
+  margin-top: -20px;
+  padding: 20px 20px 20px 20px;
+  white-space: pre-wrap; // 줄바꿈과 공백을 보존합니다.
+  overflow-wrap: break-word; // 긴 단어를 줄바꿈 합니다.
+  color: #2c0aff;
+  font-size: 16px;
+  border-radius: 0px 0px 8px 8px;
+  background: var(--Text_White, #fff);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
 `;

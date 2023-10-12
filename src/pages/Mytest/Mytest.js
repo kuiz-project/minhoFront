@@ -260,7 +260,6 @@ const Mytest = () => {
         </div>
       </div>
       <div className="mytest_left">
-
         <div className="left_body">
           <div className="left_body_header">
             <div className="h1">디렉토리명</div>
@@ -278,8 +277,8 @@ const Mytest = () => {
                 selected === index
                   ? { borderRadius: "12px", background: "#E3E6F2" }
                   : selected === index + 1
-                    ? { border: "none" }
-                    : {}
+                  ? { border: "none" }
+                  : {}
               }
               onClick={() => handleDivClick(index)}
             >
@@ -312,7 +311,7 @@ const Mytest = () => {
                     className="left_body_footer_list"
                     style={
                       selectedPage === pageIndex
-                        ? { backgroundColor: "blue", color: "white" }
+                        ? { backgroundColor: "#312E81", color: "white" }
                         : {}
                     }
                     onClick={() => setSelectedPage(pageIndex)}
@@ -334,15 +333,24 @@ const Mytest = () => {
             />
           </div>
         </div>
-
       </div>
       <div className="mytest_footer">
-      {selected==0 || selected ? (
-    <img src={resultbutton} alt="Result Button" className="resbutton" onClick={()=>{alert(`${selected+1}번째 PDF를 클릭했음`)}}/>
-  ) : (
-      <img src={nresultbutton} alt="Not Active Result Button" className="nresbutton"/>
-  
-  )}
+        {selected == 0 || selected ? (
+          <img
+            src={resultbutton}
+            alt="Result Button"
+            className="resbutton"
+            onClick={() => {
+              alert(`${selected + 1}번째 PDF를 클릭했음`);
+            }}
+          />
+        ) : (
+          <img
+            src={nresultbutton}
+            alt="Not Active Result Button"
+            className="nresbutton"
+          />
+        )}
       </div>
     </S.MytestWrapper>
   );
