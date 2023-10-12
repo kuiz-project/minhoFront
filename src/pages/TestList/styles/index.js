@@ -21,15 +21,15 @@ export const TestList = styled.div`
 `;
 
 export const TestMultipleChoice = styled.div`
+  margin-top: 16px;
   width: 100%;
-  height: 100%;
-  margin-top: 32px;
+  height: 280px;
 `;
 
 export const TestSubjective = styled.div`
-  margin-top: 32px;
+  margin-top: 16px;
   width: 100%;
-  height: 100%;
+  height: 280px;
 `;
 
 export const TestTitleSmallTitle = styled.div`
@@ -103,12 +103,12 @@ export const TestProblem1 = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-top: 23px;
+  margin-top: 18px;
   background-color: #e7ecf8;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({ isSelected }) => (isSelected ? "blue" : "#e7ecf8")};
+  background-color: ${({ isSelected }) => (isSelected ? "#312E81" : "#e7ecf8")};
   color: ${({ isSelected }) => (isSelected ? "white" : "#a3a3a3;")};
   cursor: pointer; // 선택지를 클릭할 수 있음을 나타내기 위해
 `;
@@ -131,7 +131,7 @@ export const TestProblem2 = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({ isSelected }) => (isSelected ? "blue" : "#e7ecf8")};
+  background-color: ${({ isSelected }) => (isSelected ? "#312E81" : "#e7ecf8")};
   color: ${({ isSelected }) => (isSelected ? "white" : "#a3a3a3;")};
   cursor: pointer; // 선택지를 클릭할 수 있음을 나타내기 위해
 `;
@@ -154,7 +154,7 @@ export const TestProblem3 = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({ isSelected }) => (isSelected ? "blue" : "#e7ecf8")};
+  background-color: ${({ isSelected }) => (isSelected ? "#312E81" : "#e7ecf8")};
   color: ${({ isSelected }) => (isSelected ? "white" : "#a3a3a3;")};
   cursor: pointer; // 선택지를 클릭할 수 있음을 나타내기 위해
 `;
@@ -177,7 +177,7 @@ export const TestProblem4 = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({ isSelected }) => (isSelected ? "blue" : "#e7ecf8")};
+  background-color: ${({ isSelected }) => (isSelected ? "#312E81" : "#e7ecf8")};
   color: ${({ isSelected }) => (isSelected ? "white" : "#a3a3a3;")};
   cursor: pointer; // 선택지를 클릭할 수 있음을 나타내기 위해
 `;
@@ -234,4 +234,10 @@ export const SubmitButton = styled.button`
     cursor: not-allowed;
     color: black;
   }
+`;
+export const IncorrectAnswerNotice = styled.div`
+  height: 100px;
+  width: 100%;
+  background-color: red;
+  display: flex;
 `;

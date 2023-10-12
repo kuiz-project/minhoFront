@@ -42,9 +42,10 @@ const TestList = () => {
       answerIndex: 1,
     },
     {
-      type: "subjective",
+      type: "multipleChoice",
       main: "최훈오 학생이 존잘인 이유를 10가지 설명하시요.",
-      answerText: "이 문제의 정답 예제",
+      choices: ["가나다라", "긔늬듸릐", "기니디리", "그느드르"],
+      answerIndex: 1,
     },
     {
       type: "multipleChoice",
@@ -124,6 +125,7 @@ const TestList = () => {
                       );
                     })}
                   </S.TestProblem>
+                  {submitted && !isCorrect && <S.IncorrectAnswerNotice />}
                 </S.TestMultipleChoice>
               );
             } else if (question.type === "subjective") {
@@ -142,6 +144,7 @@ const TestList = () => {
                       onBlur={(e) => handleSubjectiveBlur(index, e)}
                     />
                   </S.TestProblem_2>
+                  {submitted && !isCorrect && <S.IncorrectAnswerNotice />}
                 </S.TestSubjective>
               );
             }
