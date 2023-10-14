@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import left from "../../assets/images/left.svg";
 import right from "../../assets/images/right.svg";
 import resultbutton from "../../assets/images/resultbutton.svg";
+import nresultbutton from "../../assets/images/button_nactive.svg";
 import * as S from "./styles/index";
 
 const Mytest = () => {
@@ -18,6 +19,46 @@ const Mytest = () => {
   };
 
   const testData = [
+    {
+      b1: "fkfkfkfkfk",
+      b2: "운체제",
+      b3: "PDF 이름_번호",
+      b4: "210",
+      b5: "2023.01.02",
+      b6: "13/20",
+    },
+    {
+      b1: "ㅁ낭러니ㅏㅇ리ㅏㄴㅇ러",
+      b2: "ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ",
+      b3: "ㄴㅇㄹㄴㅇㄹㅇㄹㄴ 이름_번호",
+      b4: "2",
+      b5: "2023.01.02",
+      b6: "13/20",
+    },
+    {
+      b1: "ㅁ낭러니ㅏㅇ리ㅏㄴㅇ러",
+      b2: "ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ",
+      b3: "ㄴㅇㄹㄴㅇㄹㅇㄹㄴ 이름_번호",
+      b4: "2",
+      b5: "2023.01.02",
+      b6: "13/20",
+    },
+    {
+      b1: "ㅁ낭러니ㅏㅇ리ㅏㄴㅇ러",
+      b2: "ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ",
+      b3: "ㄴㅇㄹㄴㅇㄹㅇㄹㄴ 이름_번호",
+      b4: "2",
+      b5: "2023.01.02",
+      b6: "13/20",
+    },
+    {
+      b1: "ㅁ낭러니ㅏㅇ리ㅏㄴㅇ러",
+      b2: "ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ",
+      b3: "ㄴㅇㄹㄴㅇㄹㅇㄹㄴ 이름_번호",
+      b4: "2",
+      b5: "2023.01.02",
+      b6: "13/20",
+    },
     {
       b1: "fkfkfkfkfk",
       b2: "운체제",
@@ -212,13 +253,13 @@ const Mytest = () => {
   }
   return (
     <S.MytestWrapper>
-      <div className="mytest_left">
-        <div className="left_header">
-          <div className="left_header_top">나의 시험지</div>
-          <div className="left_header_bottom">
-            나의 시험지를 통해 틀린 문제를 점검하고 무엇무엇을 향상시켜보세용
-          </div>
+      <div className="left_header">
+        <div className="left_header_top">나의 시험지</div>
+        <div className="left_header_bottom">
+          나의 시험지를 통해 틀린 문제를 점검하고 무엇무엇을 향상시켜보세용
         </div>
+      </div>
+      <div className="mytest_left">
         <div className="left_body">
           <div className="left_body_header">
             <div className="h1">디렉토리명</div>
@@ -270,7 +311,7 @@ const Mytest = () => {
                     className="left_body_footer_list"
                     style={
                       selectedPage === pageIndex
-                        ? { backgroundColor: "blue", color: "white" }
+                        ? { backgroundColor: "#312E81", color: "white" }
                         : {}
                     }
                     onClick={() => setSelectedPage(pageIndex)}
@@ -293,21 +334,24 @@ const Mytest = () => {
           </div>
         </div>
       </div>
-      <div className="mytest_right"></div>
-      <footer>
-        <img
-          src={resultbutton}
-          alt="결과 버튼"
-          className="resbutton"
-          onClick={() => {
-            if (selected === null) {
-              alert("PDF 선택하셔야죠 인간?");
-            } else {
-              alert(`${selected + 1}번째 PDF를 누르셨네요!!`);
-            }
-          }}
-        />
-      </footer>
+      <div className="mytest_footer">
+        {selected == 0 || selected ? (
+          <img
+            src={resultbutton}
+            alt="Result Button"
+            className="resbutton"
+            onClick={() => {
+              alert(`${selected + 1}번째 PDF를 클릭했음`);
+            }}
+          />
+        ) : (
+          <img
+            src={nresultbutton}
+            alt="Not Active Result Button"
+            className="nresbutton"
+          />
+        )}
+      </div>
     </S.MytestWrapper>
   );
 };

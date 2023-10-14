@@ -3,6 +3,8 @@ import * as S from "./styles/index";
 import { IdCheckGetAPI } from "../../apis/API";
 import { userPostAPI } from "./../../apis/API";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { LoginState } from "../../recoil/atom";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -11,7 +13,6 @@ const Signup = () => {
   const [idValue, setIdValue] = useState("");
   const [pwValue, setPwValue] = useState("");
   const [pwCheckValue, setPwCheckValue] = useState("");
-
   const [idDupState, isIdDupState] = useState(true);
   const [pwValidateState, isPwValidateState] = useState(true);
   const [pwdupValidateState, isPwdupValidateState] = useState(true);
@@ -22,11 +23,19 @@ const Signup = () => {
   // 아이디 중복 확인
   const handleIdCheck = async () => {
     if (idValue !== "") {
-      const res = await IdCheckGetAPI.get(idValue);
-      if (res.data.message === "사용가능한 아이디입니다.") {
-        isIdDupState(true);
-      } else {
-        isIdDupState(false);
+      try {
+        const res = await IdCheckGetAPI.get(idValue);
+        if (res.data.message === "사용가능한 아이디입니다.") {
+          isIdDupState(true);
+        }
+      } catch (err) {
+        console.log(err);
+        if (
+          err.response &&
+          (err.response.status === 409 || err.response.status === 500)
+        ) {
+          isIdDupState(false);
+        }
       }
     }
   };
@@ -50,7 +59,9 @@ const Signup = () => {
     ) {
       try {
         const res = await userPostAPI.post("", submission);
-        console.log(res);
+        if (res.status === 201) {
+          navigate("/upload");
+        }
       } catch (err) {
         console.log(err);
       }
@@ -62,7 +73,6 @@ const Signup = () => {
   };
   const handleIdValue = (e) => {
     setIdValue(e.target.value);
-    handleIdCheck();
   };
   const handlePwValue = (e) => {
     setPwValue(e.target.value);
@@ -100,6 +110,10 @@ const Signup = () => {
     handlePwValidate();
     handlePwdupValidate();
   }, [pwValue, pwCheckValue]);
+
+  useEffect(() => {
+    handleIdCheck();
+  }, [idValue]);
 
   return (
     <S.SignupWrapper>
