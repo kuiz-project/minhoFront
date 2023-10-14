@@ -7,6 +7,7 @@ import trash from "../../assets/images/trash.svg";
 import search from "../../assets/images/search.svg";
 import edit from "../../assets/images/edit.svg";
 import * as S from "./styles/index";
+import pdfuploadN from "../../assets/images/pdfupload_n.svg";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { currentFileState, directoryState } from "../../recoil/atom";
@@ -15,6 +16,86 @@ import {
   myfolderAPI,
   updatefoldernameAPI,
 } from "./../../apis/API";
+
+const initialDirectories = [
+  {
+    folder_name: "디렉토리명",
+    isSelected: false,
+    isEdit: false,
+    folder_id: 1,
+
+    pdfDtos: [
+      {
+        pdf_id: 1,
+        file_name: "PDF 파일명 1",
+        isSelected: false,
+        isEdit: false,
+      },
+      {
+        pdf_id: 2,
+        file_name: "PDF 파일명 2",
+        isSelected: false,
+        isEdit: false,
+      },
+      {
+        pdf_id: 3,
+        file_name: "PDF 파일명 3",
+        isSelected: false,
+        isEdit: false,
+      },
+      {
+        pdf_id: 4,
+        file_name: "PDF 파일명 4",
+        isSelected: false,
+        isEdit: false,
+      },
+      {
+        pdf_id: 5,
+        file_name: "PDF 파일명 5",
+        isSelected: false,
+        isEdit: false,
+      },
+    ],
+  },
+  {
+    folder_name: "디렉토리명2",
+    isSelected: false,
+    isEdit: false,
+    folder_id: 2,
+    pdfDtos: [
+      {
+        pdf_id: 1,
+        file_name: "PDF 파일명 1",
+        isSelected: false,
+        isEdit: false,
+      },
+      {
+        pdf_id: 2,
+        file_name: "PDF 파일명 2",
+        isSelected: false,
+        isEdit: false,
+      },
+      {
+        pdf_id: 3,
+        file_name: "PDF 파일명 3",
+        isSelected: false,
+        isEdit: false,
+      },
+      {
+        pdf_id: 4,
+        file_name: "PDF 파일명 4",
+        isSelected: false,
+        isEdit: false,
+      },
+      {
+        pdf_id: 5,
+        file_name: "PDF 파일명 5",
+        isSelected: false,
+        isEdit: false,
+      },
+    ],
+  },
+];
 
 const Upload = () => {
   const [pdfFile, setpdfFile] = useState(null);
@@ -92,6 +173,14 @@ const Upload = () => {
   useEffect(() => {
     // 초기 폴더 데이터 로드
     fetchInitialData();
+  }, []);
+  useEffect(() => {
+    const updatedDirectories = initialDirectories.map((directory) => ({
+      ...directory,
+      isSelected: false,
+      isEdit: false,
+    }));
+    setDirectories(updatedDirectories);
   }, []);
 
   // 폴더 추가
@@ -293,39 +382,58 @@ const Upload = () => {
           ))}
         </S.SectionListBox>
       </S.SideBarWrapper>
-      <S.LectureUploadWrapper>
-        <S.LectureWrapper>
-          <S.UploadName>강의명</S.UploadName>
-          <S.UploadSearch>
-            <S.UploadTopSearch>
-              <img src={search} alt="검색 이미지" />
-              <S.SearchInput
-                type="text"
-                value={searchValue}
-                onChange={handleSearch}
-                placeholder="강의명을 입력하세요"
+      <S.Wrapper>
+        <S.LectureUploadWrapper>
+          <S.Directory>
+            <S.DirectoryName>디렉토리명</S.DirectoryName>
+            <S.DirectorySearch>
+              <S.UploadTopSearch>
+                <img src={search} alt="검색 이미지" />
+                <S.SearchInput
+                  type="text"
+                  value={searchValue}
+                  onChange={handleSearch}
+                  placeholder="사용자가 입력한 텍스트"
+                />
+              </S.UploadTopSearch>
+            </S.DirectorySearch>
+          </S.Directory>
+          <S.LectureWrapper>
+            <S.UploadName>강의명</S.UploadName>
+            <S.UploadSearch>
+              <S.UploadTopSearch>
+                <img src={search} alt="검색 이미지" />
+                <S.SearchInput
+                  type="text"
+                  value={searchValue}
+                  onChange={handleSearch}
+                  placeholder="사용자가 입력한 텍스트"
+                />
+              </S.UploadTopSearch>
+              <S.SearchList>
+                {subjects.map((subject) => (
+                  <S.SearchItem>{subject.subjectName}</S.SearchItem>
+                ))}
+              </S.SearchList>
+            </S.UploadSearch>
+          </S.LectureWrapper>
+          <S.FileUploadWrapper>
+            <S.UploadBox>
+              <input
+                type="file"
+                className="hiddenInput"
+                onChange={handleChange}
               />
-            </S.UploadTopSearch>
-            <S.SearchList>
-              {subjects.map((subject) => (
-                <S.SearchItem>{subject.subjectName}</S.SearchItem>
-              ))}
-            </S.SearchList>
-          </S.UploadSearch>
-        </S.LectureWrapper>
-        <S.FileUploadWrapper>
-          <S.UploadBox>
-            <input
-              type="file"
-              className="hiddenInput"
-              onChange={handleChange}
-            />
-            <S.UploadCancelBtn>
-              <img src={cancel} alt="취소 버튼" />
-            </S.UploadCancelBtn>
-          </S.UploadBox>
-        </S.FileUploadWrapper>
-      </S.LectureUploadWrapper>
+              <S.UploadCancelBtn>
+                <img src={cancel} alt="취소 버튼" />
+              </S.UploadCancelBtn>
+            </S.UploadBox>
+          </S.FileUploadWrapper>
+        </S.LectureUploadWrapper>
+        <S.footer>
+          <img src={pdfuploadN} alt="pdf 업로드 전 버튼" />
+        </S.footer>
+      </S.Wrapper>
     </S.UploadWrapper>
   );
 };

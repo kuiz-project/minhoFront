@@ -5,6 +5,9 @@ export const UploadWrapper = styled.div`
   section::-webkit-scrollbar {
     display: none;
   }
+  display: flex;
+  align-items: center;
+  height: 75%;
 `;
 
 export const DirTitle = styled.div`
@@ -36,6 +39,7 @@ export const SideBarWrapper = styled.section`
   z-index: 998;
   height: 100%;
   width: 234px;
+  background-color: white;
 `;
 
 export const SideBarHeader = styled.section`
@@ -43,7 +47,7 @@ export const SideBarHeader = styled.section`
   gap: 15px;
   border: 1px solid #ededed;
   background: var(--Text_White, #fff);
-  width: 98%;
+  width: 100%;
   justify-content: flex-end;
   align-items: center;
   padding: 15px;
@@ -63,14 +67,21 @@ export const DirBox = styled.button`
   align-items: center;
   gap: 8px;
 `;
-
+export const Wrapper = styled.section`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 234px;
+`;
 export const EditBtn = styled.button`
   color: #555;
   font-size: 16px;
   font-weight: 350;
   z-index: 10;
 `;
-
 export const CompleteBtn = styled.button`
   color: #555;
   font-size: 16px;
@@ -103,16 +114,25 @@ export const LectureUploadWrapper = styled.section`
   max-width: 712px;
   width: 100%;
   margin: 0 auto;
-  margin-top: 161px;
   display: flex;
   flex-direction: column;
-  gap: 31px;
+`;
+
+export const Directory = styled.div`
+  border-radius: 16px;
+  width: 90%;
+  height: 112px;
+  background-color: white;
+  margin-bottom: 20px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: row;
 `;
 
 export const LectureWrapper = styled.div`
   border-radius: 16px;
-  width: 100%;
-  height: 364px;
+  width: 90%;
+  height: 290px;
   background: var(--Text_White, #fff);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.12);
   display: flex;
@@ -125,6 +145,7 @@ export const LectureWrapper = styled.div`
     /* This is the magic bit for WebKit */
     display: none;
   }
+  margin-bottom: 20px;
 `;
 
 export const UploadName = styled.span`
@@ -139,6 +160,7 @@ export const UploadSearch = styled.span`
   flex-direction: column;
   gap: 15px;
   height: 100%;
+  width: 250px;
 `;
 
 export const UploadTopSearch = styled.span`
@@ -157,7 +179,7 @@ export const UploadTopSearch = styled.span`
 `;
 
 export const SearchInput = styled.input`
-  height: 100%;
+  height: 48px;
   width: 100%;
   border-radius: 50px;
   display: flex;
@@ -192,12 +214,12 @@ export const SearchItem = styled.button`
 
 export const FileUploadWrapper = styled.div`
   max-width: 712px;
-  width: 100%;
+  width: 90%;
   height: 84px;
   border-radius: 16px;
   align-items: center;
   background: var(--Text_White, #fff);
-  padding: 24px 74px;
+  padding: 20px 74px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
 `;
 
@@ -237,7 +259,7 @@ export const UploadCancelBtn = styled.button`
 
 export const FileInput = styled.input`
   color: #424242;
-  width: 85%;
+  width: 90%;
   font-size: 14px;
   border: none;
   outline: none;
@@ -268,3 +290,44 @@ export const FileEditBtn = styled.button`
 `;
 
 export const ViewWrapper = styled.div``;
+export const footer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 64px;
+  width: 100%;
+  height: 92px;
+  border-top: 1px solid #e1e1e1;
+  background: #fff;
+
+  /* header */
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  bottom: 0;
+  z-index: 10000;
+  margin-left: -234px;
+`;
+export const DirectoryName = styled.div`
+  margin-top: 45px;
+  padding-left: 25px;
+  color: #000;
+  font-family: Noto Sans KR_Medium;
+  font-size: 20px;
+`;
+export const DirectorySearch = styled.div`
+  border-radius: 62px;
+  margin-top: 30px;
+  margin-left: 50px;
+  height: 48px;
+  width: 400px;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  img {
+    position: absolute;
+    padding: 8px 16px;
+  }
+`;
