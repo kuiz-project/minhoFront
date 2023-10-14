@@ -163,6 +163,7 @@ export const UploadName = styled.span`
   color: #000;
   font-family: Noto Sans KR_Medium;
   font-size: 20px;
+  position: fixed;
 `;
 
 export const UploadSearch = styled.span`
@@ -205,9 +206,12 @@ export const SearchInput = styled.input`
 `;
 
 export const SearchList = styled.span`
+  margin-left: 100px;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: 400px;
+  background-color: red;
 `;
 
 export const SearchItem = styled.button`
