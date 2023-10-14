@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "http://3.39.190.225:8080";
+const BASE_URL = "http://localhost:8080";
 /**
  * 사용자 관리
  */

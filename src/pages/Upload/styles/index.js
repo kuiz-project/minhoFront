@@ -40,6 +40,12 @@ export const SideBarWrapper = styled.section`
   height: 100%;
   width: 234px;
   background-color: white;
+  overflow: scroll;
+  // webkit 렌더링 엔진에서 스크롤 바 숨기기
+  &::-webkit-scrollbar {
+    /* This is the magic bit for WebKit */
+    display: none;
+  }
 `;
 
 export const SideBarHeader = styled.section`
@@ -47,14 +53,18 @@ export const SideBarHeader = styled.section`
   gap: 15px;
   border: 1px solid #ededed;
   background: var(--Text_White, #fff);
-  width: 100%;
+  width: 238px;
   justify-content: flex-end;
   align-items: center;
-  padding: 15px;
+  padding: 13px;
   height: 40px;
+  position: fixed;
+  margin-top: -1px;
 `;
 
 export const SectionListBox = styled.section`
+  margin-top: 35px;
+  margin-bottom: 10px;
   padding: 10px 10px;
   display: flex;
   flex-direction: column;

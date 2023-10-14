@@ -386,30 +386,10 @@ const Upload = () => {
         <S.LectureUploadWrapper>
           <S.Directory>
             <S.DirectoryName>디렉토리명</S.DirectoryName>
-            <S.DirectorySearch>
-              <S.UploadTopSearch>
-                <img src={search} alt="검색 이미지" />
-                <S.SearchInput
-                  type="text"
-                  value={searchValue}
-                  onChange={handleSearch}
-                  placeholder="사용자가 입력한 텍스트"
-                />
-              </S.UploadTopSearch>
-            </S.DirectorySearch>
           </S.Directory>
           <S.LectureWrapper>
             <S.UploadName>강의명</S.UploadName>
             <S.UploadSearch>
-              <S.UploadTopSearch>
-                <img src={search} alt="검색 이미지" />
-                <S.SearchInput
-                  type="text"
-                  value={searchValue}
-                  onChange={handleSearch}
-                  placeholder="사용자가 입력한 텍스트"
-                />
-              </S.UploadTopSearch>
               <S.SearchList>
                 {subjects.map((subject) => (
                   <S.SearchItem>{subject.subjectName}</S.SearchItem>
