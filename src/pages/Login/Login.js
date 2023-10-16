@@ -31,7 +31,7 @@ const LoginPage = () => {
       if (res.status === 200) {
         console.log("로그인 성공");
         setIsLoginState(true);
-        navigate("/upload");
+        // navigate("/upload");
       }
     } catch (err) {
       if (err.response.status === 400) {

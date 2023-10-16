@@ -6,9 +6,9 @@ import Navbar from "./../components/Navbar/Navbar";
 const Mainlayout = () => {
   return (
     <MainLayoutWrapper>
-      {/* 고정 Nav 바 */}
+      {/* 怨좎젙 Nav 諛� */}
       <Navbar />
-      {/* 변화하는 부분 */}
+      {/* 蹂��솕�븯�뒗 遺�遺� */}
       <OutletWrapper>
         <Outlet />
       </OutletWrapper>
